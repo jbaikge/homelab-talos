@@ -5,6 +5,9 @@ machine:
       - interface: enp0s20f0
         addresses:
           - ${ip_address}/24
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 10.100.6.1
     nameservers:
       - 10.100.1.2
       - 10.100.1.3
