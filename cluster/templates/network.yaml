@@ -1,0 +1,11 @@
+machine:
+  network:
+    hostname: ${hostname}
+    dnsDomain: ${dns_domain}
+    interfaces:
+      - interface: enp0s20f0
+        addresses:
+          - ${ip_address}/24
+    nameservers:
+      - 10.100.1.2
+      - 10.100.1.3
