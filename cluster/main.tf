@@ -67,7 +67,8 @@ resource "talos_machine_configuration_apply" "worker" {
 
 resource "talos_machine_bootstrap" "this" {
   client_configuration = talos_machine_secrets.this.client_configuration
-  node                 = [for k, v in var.nodes.controlplanes : "${k}.${var.root_domain}"][0]
+  node                 = [for k, v in var.nodes.controlplanes : k][0]
+  endpoint             = [for k, v in var.nodes.controlplanes : "${k}.${var.root_domain}"][0]
   depends_on = [
     talos_machine_configuration_apply.controlplane,
   ]
