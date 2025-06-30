@@ -35,11 +35,12 @@ resource "talos_machine_configuration_apply" "controlplane" {
       install_disk = each.value.install_disk
     }),
     templatefile("${path.module}/templates/network.yaml", {
-      dns_domain = var.root_domain
       ip_address = each.value.ip_address
       hostname   = each.key
     }),
-    templatefile("${path.module}/templates/cluster-subnet.yaml", {}),
+    templatefile("${path.module}/templates/cluster-subnet.yaml", {
+      dns_domain = var.root_domain
+    }),
     templatefile("${path.module}/templates/control-plane-scheduling.yaml", {}),
   ]
 }
@@ -55,11 +56,12 @@ resource "talos_machine_configuration_apply" "worker" {
       install_disk = each.value.install_disk
     }),
     templatefile("${path.module}/templates/network.yaml", {
-      dns_domain = var.root_domain
       ip_address = each.value.ip_address
       hostname   = each.key
     }),
-    templatefile("${path.module}/templates/cluster-subnet.yaml", {}),
+    templatefile("${path.module}/templates/cluster-subnet.yaml", {
+      dns_domain = var.root_domain
+    }),
   ]
 }
 

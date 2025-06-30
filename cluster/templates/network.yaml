@@ -1,7 +1,6 @@
 machine:
   network:
     hostname: ${hostname}
-    dnsDomain: ${dns_domain}
     interfaces:
       - interface: enp0s20f0
         addresses:
