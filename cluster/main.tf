@@ -40,7 +40,6 @@ resource "talos_machine_configuration_apply" "controlplane" {
     templatefile("${path.module}/templates/cluster-subnet.yaml", {
       dns_domain = var.root_domain
     }),
-    templatefile("${path.module}/templates/cilium.yaml", {}),
     templatefile("${path.module}/templates/control-plane-scheduling.yaml", {}),
   ]
 }
@@ -61,7 +60,6 @@ resource "talos_machine_configuration_apply" "worker" {
     templatefile("${path.module}/templates/cluster-subnet.yaml", {
       dns_domain = var.root_domain
     }),
-    templatefile("${path.module}/templates/cilium.yaml", {}),
   ]
 }
 
