@@ -1,3 +1,4 @@
+/*
 resource "helm_release" "cilium" {
   name       = "cilium"
   repository = "https://helm.cilium.io"
@@ -51,3 +52,4 @@ resource "helm_release" "cilium" {
     },
   ]
 }
+*/
