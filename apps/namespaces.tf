@@ -1,17 +1,35 @@
-resource "kubernetes_namespace" "web" {
+resource "kubernetes_namespace" "automation" {
   metadata {
-    name = "web"
+    name = "automation"
+    annotations = {
+      name = "automation"
+    }
   }
 }
 
 resource "kubernetes_namespace" "database" {
   metadata {
     name = "database"
+    annotations = {
+      name = "database"
+    }
   }
 }
 
-resource "kubernetes_namespace" "automation" {
+resource "kubernetes_namespace" "ingress" {
   metadata {
-    name = "automation"
+    name = "ingress"
+    annotations = {
+      name = "ingress"
+    }
+  }
+}
+
+resource "kubernetes_namespace" "web" {
+  metadata {
+    name = "web"
+    annotations = {
+      name = "web"
+    }
   }
 }
