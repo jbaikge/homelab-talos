@@ -18,3 +18,11 @@ machine:
 %{ for ns in nameservers ~}
       - ${ns}
 %{ endfor ~}
+
+cluster:
+  allowSchedulingOnControlPlanes: false
+  network:
+    podSubnets:
+      - 192.168.0.0/16
+    serviceSubnets:
+      - 172.16.0.0/12
