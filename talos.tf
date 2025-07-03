@@ -6,7 +6,7 @@ data "talos_machine_configuration" "controlplane" {
   machine_type     = "controlplane"
   machine_secrets  = talos_machine_secrets.this.machine_secrets
   config_patches = [
-    templatefile("${path.module}/templates/control-plane.yaml", {}),
+    templatefile("${path.module}/templates/control-plane.yml", {}),
   ]
 }
 
@@ -16,7 +16,7 @@ data "talos_machine_configuration" "worker" {
   machine_type     = "worker"
   machine_secrets  = talos_machine_secrets.this.machine_secrets
   config_patches = [
-    templatefile("${path.module}/templates/worker.yaml", {}),
+    templatefile("${path.module}/templates/worker.yml", {}),
   ]
 }
 
@@ -27,7 +27,7 @@ resource "talos_machine_configuration_apply" "controlplane" {
   machine_configuration_input = data.talos_machine_configuration.controlplane.machine_configuration
 
   config_patches = [
-    templatefile("${path.module}/templates/common.yaml", {
+    templatefile("${path.module}/templates/common.yml", {
       install_disk = each.value.install_disk
       interface    = each.value.interface
       ip           = each.value.ip
@@ -47,7 +47,7 @@ resource "talos_machine_configuration_apply" "worker" {
   machine_configuration_input = data.talos_machine_configuration.worker.machine_configuration
 
   config_patches = [
-    templatefile("${path.module}/templates/common.yaml", {
+    templatefile("${path.module}/templates/common.yml", {
       install_disk = each.value.install_disk
       interface    = each.value.interface
       ip           = each.value.ip
