@@ -1,6 +1,8 @@
 machine:
   install:
     disk: ${install_disk}
+  network:
+    hostname: ${hostname}
     interfaces:
       - interface: ${interface}
         addresses:
@@ -8,9 +10,10 @@ machine:
         routes:
           - network: 0.0.0.0/0
             gateway: ${gateway}
-        %{ if vip != "" }vip: ${vip}%{ endif }
-  network:
-    hostname: ${hostname}
+%{ if vip != "" ~}
+        vip:
+          ip: ${vip}
+%{ endif ~}
     nameservers:
 %{ for ns in nameservers ~}
       - ${ns}
