@@ -77,8 +77,9 @@ data "talos_client_configuration" "this" {
 }
 
 resource "local_file" "talosconfig" {
-  content  = data.talos_client_configuration.this.talos_config
-  filename = "talosconfig"
+  content         = data.talos_client_configuration.this.talos_config
+  filename        = "talosconfig"
+  file_permission = "0644"
 }
 
 resource "talos_cluster_kubeconfig" "this" {
@@ -91,8 +92,9 @@ resource "talos_cluster_kubeconfig" "this" {
 }
 
 resource "local_file" "kubeconfig" {
-  content  = talos_cluster_kubeconfig.this.kubeconfig_raw
-  filename = "kubeconfig"
+  content         = talos_cluster_kubeconfig.this.kubeconfig_raw
+  filename        = "kubeconfig"
+  file_permission = "0644"
 }
 
 data "talos_cluster_health" "this" {
