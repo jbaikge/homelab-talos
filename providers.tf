@@ -5,6 +5,10 @@ terraform {
       source  = "hashicorp/kubernetes"
       version = "~> 2.37"
     }
+    kubectl = {
+      source  = "gavinbunney/kubectl"
+      version = "~> 1.19"
+    }
     helm = {
       source  = "hashicorp/helm"
       version = "~> 3.0"
@@ -21,12 +25,16 @@ terraform {
 }
 
 provider "kubernetes" {
-  config_path = "./kubeconfig.yaml"
+  config_path = "./kubeconfig"
+}
+
+provider "kubectl" {
+  config_path = "./kubeconfig"
 }
 
 provider "helm" {
   kubernetes = {
-    config_path = "./kubeconfig.yaml"
+    config_path = "./kubeconfig"
   }
 }
 
