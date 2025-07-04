@@ -1,9 +1,12 @@
 ingressRoute:
   dashboard:
     enabled: true
-    matchRule: Host(`grove.hardwood.cloud`)
+    matchRule: Host(`traefik.${domain}`)
     entryPoints:
-      - web
+      - websecure
+logs:
+  access:
+    enabled: true
 api:
   dashboard: true
   insecure: true
@@ -12,6 +15,16 @@ providers:
     enabled: true
 gateway:
   namespacePolicy: All
+ports:
+  web:
+    redirections:
+      entryPoint:
+        to: websecure
+        scheme: https
+        permanent: true
+  websecure:
+    tls:
+      enabled: true
 # securityContext:
 #   seccompProfile:
 #     type: RuntimeDefault
