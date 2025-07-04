@@ -1,3 +1,6 @@
+# Put a pod on every node in the cluster so it is always available
+deployment:
+  kind: DaemonSet
 ingressRoute:
   dashboard:
     enabled: true
