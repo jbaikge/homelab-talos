@@ -1,3 +1,6 @@
 .terraform
 terraform.tfstate
 terraform.tfstate.backup
+files/kubeconfig.yml
+files/secrets.yml
+files/talosconfig.yml
