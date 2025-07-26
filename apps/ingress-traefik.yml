@@ -1,0 +1,17 @@
+# ingressRoute:
+#   dashboard:
+#     enabled: true
+#     matchRule: Host(`grove.hardwood.cloud`)
+#     entryPoints:
+#       - web
+# api:
+#   dashboard: true
+#   insecure: true
+# providers:
+#   kubernetesGateway:
+#     enabled: true
+# gateway:
+#   namespacePolicy: All
+# securityContext:
+#   seccompProfile:
+#     type: RuntimeDefault
