@@ -65,7 +65,8 @@ resource "kubernetes_manifest" "whoami_httproute" {
     spec = {
       parentRefs = [
         {
-          name = "traefik-gateway"
+          name      = "traefik-gateway"
+          namespace = kubernetes_namespace.traefik.metadata[0].name
         },
       ]
       hostnames = [
