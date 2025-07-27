@@ -17,6 +17,10 @@ terraform {
       source  = "hashicorp/local"
       version = "~> 2.5"
     }
+    sops = {
+      source  = "carlpett/sops"
+      version = "~> 1.2"
+    }
     talos = {
       source  = "siderolabs/talos"
       version = "~> 0.8"
@@ -39,5 +43,7 @@ provider "helm" {
 }
 
 provider "local" {}
+
+provider "sops" {}
 
 provider "talos" {}
