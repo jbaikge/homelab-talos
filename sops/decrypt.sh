@@ -1,14 +1,10 @@
 #!/usr/bin/env bash
 
-DIR=$(dirname "$0")
-FILE_PREFIXES=(
-    kubeconfig
-    secrets
-    talosconfig
-)
+set -ex
 
-for PREFIX in "${FILE_PREFIXES[@]}"; do
-    INPUT_PATH="$DIR/$PREFIX.enc.yml"
-    OUTPUT_PATH="$DIR/$PREFIX.yml"
-    sops decrypt --output "$OUTPUT_PATH" "$INPUT_PATH"
+DIR=$(dirname "$0")
+FILES=($DIR/*.enc.yml)
+
+for INPUT in ${FILES[@]}; do
+    sops decrypt --output "${INPUT/\.enc/}" "$INPUT"
 done
