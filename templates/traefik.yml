@@ -56,7 +56,6 @@ gateway:
           name: local-selfsigned-tls  # the Secret we created before the installation
           group: ""
 
-
 # Configure Network Ports and EntryPoints
 # EntryPoints are the network listeners for incoming traffic.
 ports:
