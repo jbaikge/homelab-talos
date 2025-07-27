@@ -78,7 +78,7 @@ data "talos_client_configuration" "this" {
 
 resource "local_file" "talosconfig" {
   content         = data.talos_client_configuration.this.talos_config
-  filename        = "files/talosconfig.yml"
+  filename        = "${path.module}/sops/talosconfig.dec.yml"
   file_permission = "0644"
 }
 
@@ -93,7 +93,7 @@ resource "talos_cluster_kubeconfig" "this" {
 
 resource "local_file" "kubeconfig" {
   content         = talos_cluster_kubeconfig.this.kubeconfig_raw
-  filename        = "files/kubeconfig.yml"
+  filename        = "${path.module}/sops/kubeconfig.dec.yml"
   file_permission = "0644"
 }
 

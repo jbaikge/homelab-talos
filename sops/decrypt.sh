@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
-set -ex
+set -e
 
 DIR=$(dirname "$0")
-FILES=($DIR/*.enc.yml)
 
-for INPUT in ${FILES[@]}; do
-    sops decrypt --output "${INPUT/\.enc/}" "$INPUT"
+for FILE in $DIR/*.enc.yml; do
+    sops decrypt --output "${FILE/.enc.yml$/.dec.yml}" "$FILE"
 done
