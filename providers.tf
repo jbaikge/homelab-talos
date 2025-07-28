@@ -29,16 +29,16 @@ terraform {
 }
 
 provider "kubernetes" {
-  config_path = "./sops/kubeconfig.dec.yml"
+  config_path = "./config/kubeconfig.dec.yml"
 }
 
 provider "kubectl" {
-  config_path = "./sops/kubeconfig.dec.yml"
+  config_path = "./config/kubeconfig.dec.yml"
 }
 
 provider "helm" {
   kubernetes = {
-    config_path = "./sops/kubeconfig.dec.yml"
+    config_path = "./config/kubeconfig.dec.yml"
   }
 }
 
