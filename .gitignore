@@ -3,4 +3,4 @@ terraform.tfstate
 terraform.tfstate.backup
 
 # SOPS-decrypted files
-sops/*.dec.yml
+config/*.dec.yml

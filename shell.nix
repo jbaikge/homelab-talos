@@ -12,10 +12,10 @@ pkgs.mkShell {
         pkgs.talosctl
     ];
 
-    KUBECONFIG="${PROJECT_ROOT}/sops/kubeconfig.dec.yml";
-    TALOSCONFIG="${PROJECT_ROOT}/sops/talosconfig.dec.yml";
+    KUBECONFIG="${PROJECT_ROOT}/config/kubeconfig.dec.yml";
+    TALOSCONFIG="${PROJECT_ROOT}/config/talosconfig.dec.yml";
 
     shellHook = ''
-        ./sops/decrypt.sh
+        ./config/decrypt.sh
     '';
 }
