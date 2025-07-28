@@ -23,8 +23,8 @@ resource "helm_release" "cert_manager" {
 
 # Self-Signed certificate to see how this goes
 # Ref: https://cloud.theodo.com/en/blog/traefik-kubernetes-certmanager
-resource "kubectl_manifest" "cert_manager_cluster_issuer" {
-  yaml_body = templatefile("${path.module}/config/cert-manager-cluster-issuer.yml", {
+resource "kubectl_manifest" "cert_manager_self_cluster_issuer" {
+  yaml_body = templatefile("${path.module}/config/cert-manager-self-cluster-issuer.yml", {
   })
 
   depends_on = [
@@ -32,13 +32,13 @@ resource "kubectl_manifest" "cert_manager_cluster_issuer" {
   ]
 }
 
-resource "kubectl_manifest" "cert_manager_certificate" {
-  yaml_body = templatefile("${path.module}/config/cert-manager-certificate.yml", {
+resource "kubectl_manifest" "cert_manager_self_certificate" {
+  yaml_body = templatefile("${path.module}/config/cert-manager-self-certificate.yml", {
     domain    = var.domain
     namespace = kubernetes_namespace.traefik.metadata[0].name
   })
 
   depends_on = [
-    kubectl_manifest.cert_manager_cluster_issuer,
+    kubectl_manifest.cert_manager_self_cluster_issuer,
   ]
 }
