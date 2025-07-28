@@ -20,7 +20,7 @@ resource "helm_release" "metallb" {
   version    = "0.15.2"
   namespace  = kubernetes_namespace.metallb-system.metadata[0].name
   values = [
-    file("${path.module}/files/metallb.yml"),
+    file("${path.module}/config/metallb.yml"),
   ]
 
   depends_on = [
@@ -29,7 +29,7 @@ resource "helm_release" "metallb" {
 }
 
 resource "kubectl_manifest" "IPAddressPool" {
-  yaml_body = templatefile("${path.module}/templates/metallb-IPAddressPool.yml", {
+  yaml_body = templatefile("${path.module}/config/metallb-IPAddressPool.yml", {
     namespace = kubernetes_namespace.metallb-system.metadata[0].name
     address   = "${var.vip}/32"
   })
@@ -40,7 +40,7 @@ resource "kubectl_manifest" "IPAddressPool" {
 }
 
 resource "kubectl_manifest" "L2Advertisement" {
-  yaml_body = templatefile("${path.module}/templates/metallb-L2Advertisement.yml", {
+  yaml_body = templatefile("${path.module}/config/metallb-L2Advertisement.yml", {
     namespace = kubernetes_namespace.metallb-system.metadata[0].name
   })
 

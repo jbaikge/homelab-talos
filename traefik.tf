@@ -28,7 +28,7 @@ resource "helm_release" "traefik" {
   namespace  = kubernetes_namespace.traefik.metadata[0].name
 
   values = [
-    templatefile("${path.module}/templates/traefik.yml", {
+    templatefile("${path.module}/config/traefik.yml", {
       domain = var.domain
     }),
   ]
