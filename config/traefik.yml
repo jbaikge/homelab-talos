@@ -52,9 +52,7 @@ gateway:
       namespacePolicy: All
       mode: Terminate
       certificateRefs:
-        - kind: Secret
-          name: local-selfsigned-tls  # the Secret we created before the installation
-          group: ""
+        - name: traefik.${domain}
 
 # Configure Network Ports and EntryPoints
 # EntryPoints are the network listeners for incoming traffic.

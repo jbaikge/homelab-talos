@@ -8,18 +8,6 @@ resource "kubernetes_namespace" "traefik" {
   ]
 }
 
-resource "kubernetes_secret" "traefik_cert" {
-  type = "kubernetes.io/tls"
-  metadata {
-    name      = "local-selfsigned-tls"
-    namespace = kubernetes_namespace.traefik.metadata[0].name
-  }
-  data = {
-    "tls.crt" = data.sops_file.secrets.data["cert.cert"]
-    "tls.key" = data.sops_file.secrets.data["cert.key"]
-  }
-}
-
 resource "helm_release" "traefik" {
   name       = "traefik"
   repository = "https://traefik.github.io/charts"
