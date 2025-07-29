@@ -1,0 +1,16 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: traefik.${domain}
+  namespace: ${namespace}
+spec:
+  secretName: traefik.${domain}
+  subject:
+    organizations:
+      - cert-manager
+  dnsNames:
+    - "${domain}"
+    - "*.${domain}"
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
