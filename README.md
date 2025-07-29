@@ -25,4 +25,4 @@ The settings from OS to container are managed with Terraform and deployed with O
 
 These links helped set this repo up and define how a lot of it works:
 
-- [acaciochinato/talos-linux-terrafor](https://github.com/acaciochinato/talos-linux-terraform)
+- [acaciochinato/talos-linux-terraform](https://github.com/acaciochinato/talos-linux-terraform)
