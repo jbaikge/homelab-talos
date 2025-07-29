@@ -13,14 +13,13 @@ The settings from OS to container are managed with Terraform and deployed with O
 5. On a management machine, run `nix-shell` to install dependencies and set up the environment
 6. Run `tofu apply`
 
-## Machinery
+## Hardware
 
-| Name    | Role           | Specs                     |
-| ------- | -------------- | ------------------------- |
-| ash     | TrueNas Server | Supermicro SYS-5018A-FTN4 |
-| cherry  | Control Plane  | Supermicro SYS-5018A-FTN4 |
-| hickory | Worker         | Supermicro SYS-5018A-FTN4 |
-| maple   | Worker         | Supermicro SYS-5018A-FTN4 |
+| Device                    | Count  | OS Disk | Data Disk | RAM  | OS          | Purpose       |
+| ------------------------- | -----: | ------- | --------- | ---- | ----------- | ------------- |
+| Supermicro SYS-5018A-FTN4 | 1      | 128GB   | 2x4TB     | 16GB | TrueNAS     | Data Storage  |
+| Supermicro SYS-5018A-FTN4 | 1      | 128GB   | None      | 16GB | Talos Linux | Control Plane |
+| Supermicro SYS-5018A-FTN4 | 2      | 128GB   | None      | 16GB | Talos Linux | Worker        |
 
 ## Helpful Resources
 
