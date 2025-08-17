@@ -57,6 +57,11 @@ data "talos_machine_configuration" "controlplane" {
     templatefile("${path.module}/files/cloudflared.yaml", {
       tunnel_token = var.cloudflared_tunnel_token
     }),
+    templatefile("${path.module}/files/nut.yaml", {
+      upsmon_host = var.upsmon_host
+      upsmon_user = var.upsmon_user
+      upsmon_pass = var.upsmon_pass
+    }),
   ]
 }
 
@@ -80,6 +85,11 @@ data "talos_machine_configuration" "worker" {
     }),
     templatefile("${path.module}/files/cloudflared.yaml", {
       tunnel_token = var.cloudflared_tunnel_token
+    }),
+    templatefile("${path.module}/files/nut.yaml", {
+      upsmon_host = var.upsmon_host
+      upsmon_user = var.upsmon_user
+      upsmon_pass = var.upsmon_pass
     }),
   ]
 }

@@ -78,6 +78,23 @@ variable "workers" {
   }))
 }
 
+# NUT (upsmon)
+
+variable "upsmon_host" {
+  description = "Host of NUT server"
+  type        = string
+}
+
+variable "upsmon_user" {
+  description = "NUT server username"
+  type        = string
+}
+
+variable "upsmon_pass" {
+  description = "NUT server password"
+  type        = string
+}
+
 # Cloudflare
 
 variable "cloudflared_tunnel_token" {
