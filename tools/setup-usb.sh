@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -ex
+set -e
 
 if [ -z "$1" ]; then
     echo "This tool assumes Ventoy is already set up on the USB drives"
@@ -35,17 +35,16 @@ cat <<EOF > $VENTOY_CONFIG
 EOF
 
 if [ ! -f "$IMAGE_PATH" ]; then
-    curl "$IMAGE_URL" --output "$IMAGE_PATH"
+    curl --location --silent "$IMAGE_URL" --output "$IMAGE_PATH"
 fi
 
 if [ ! -f "$TALOS_KEY_PATH" ]; then
-    curl "$TALOS_KEY_URL" --output "$TALOS_KEY_PATH"
+    curl --location --silent "$TALOS_KEY_URL" --output "$TALOS_KEY_PATH"
 fi
 
 mkdir -p "$EFI_MOUNT_DIR" "$ISO_MOUNT_DIR"
 
-for I in ${!DISKS[@]}; do
-    DISK=${DISKS[$I]}
+for DISK in ${DISKS[@]}; do
     ISO_PART=${DISK}1
     EFI_PART=${DISK}2
 
