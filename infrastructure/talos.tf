@@ -58,7 +58,7 @@ data "talos_machine_configuration" "controlplane" {
 }
 
 data "talos_machine_configuration" "worker" {
-  for_each         = var.controlplanes
+  for_each         = var.workers
   cluster_name     = var.cluster_name
   cluster_endpoint = var.endpoint
   machine_type     = "worker"
