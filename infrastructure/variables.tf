@@ -97,6 +97,12 @@ variable "upsmon_pass" {
 
 # Cloudflare
 
+variable "cloudflare_token" {
+  description = "Cloudflare token with the following permissions: Account - Cloudflare Tunnel - Edit; Account - Access: Apps and Policies - Edit; Zone - DNS - Edit"
+  type        = string
+  sensitive   = true
+}
+
 variable "cloudflared_tunnel_token" {
   description = "Cloudflared token for Talos system extension. Create in the web interface at Zero-Trust > Networks > Tunnels > Create Cloudflare Tunnel"
   type        = string

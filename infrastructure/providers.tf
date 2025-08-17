@@ -1,10 +1,10 @@
 terraform {
   required_version = ">= 1.10.0"
   required_providers {
-    # cloudflare = {
-    #   source  = "cloudflare/cloudflare"
-    #   version = "~> 5.8"
-    # }
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "~> 5.8"
+    }
     helm = {
       source  = "hashicorp/helm"
       version = "~> 3.0"
@@ -40,9 +40,9 @@ terraform {
   }
 }
 
-# provider "cloudflare" {
-#   api_token = ""
-# }
+provider "cloudflare" {
+  api_token = var.cloudflare_token
+}
 
 provider "helm" {
   kubernetes = {
