@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -ex
 
 if [ -z "$1" ]; then
     echo "This tool assumes Ventoy is already set up on the USB drives"
@@ -11,7 +11,7 @@ if [ -z "$1" ]; then
 fi
 
 STAGING_DIR=/tmp/talos
-VERSION="v1.10.4"
+VERSION="v1.10.6"
 IMAGE_URL="https://github.com/siderolabs/talos/releases/download/${VERSION}/metal-amd64.iso"
 IMAGE_FILE="talos-${VERSION}.iso"
 IMAGE_PATH="$STAGING_DIR/$IMAGE_FILE"
@@ -21,6 +21,8 @@ TALOS_KEY_URL="https://factory.talos.dev/secureboot/signing-cert.pem"
 TALOS_KEY_PATH="$STAGING_DIR/talos-secure-boot.pem"
 EFI_MOUNT_DIR="$STAGING_DIR/ventoy-efi"
 ISO_MOUNT_DIR="$STAGING_DIR/ventoy-iso"
+
+mkdir -p $STAGING_DIR
 
 cat <<EOF > $VENTOY_CONFIG
 {
@@ -36,8 +38,8 @@ if [ ! -f "$IMAGE_PATH" ]; then
     curl "$IMAGE_URL" --output "$IMAGE_PATH"
 fi
 
-if [ ! -f "$TALOS_KEY" ]; then
-    curl "$TALOS_KEY_URL" --output "$TALOS_KEY"
+if [ ! -f "$TALOS_KEY_PATH" ]; then
+    curl "$TALOS_KEY_URL" --output "$TALOS_KEY_PATH"
 fi
 
 mkdir -p "$EFI_MOUNT_DIR" "$ISO_MOUNT_DIR"
@@ -48,7 +50,7 @@ for I in ${!DISKS[@]}; do
     EFI_PART=${DISK}2
 
     mount $EFI_PART "$EFI_MOUNT_DIR"
-    cp -v "$TALOS_KEY" "$EFI_MOUNT_DIR"
+    cp -v "$TALOS_KEY_PATH" "$EFI_MOUNT_DIR"
     umount "$EFI_MOUNT_DIR"
 
     mount $ISO_PART "$ISO_MOUNT_DIR"
