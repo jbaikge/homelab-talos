@@ -5,4 +5,7 @@ terraform.tfstate.backup
 # SOPS-decrypted files
 config/*.dec.yml
 
+config/talosconfig.yaml
+config/kubeconfig.yaml
+
 hardwood.tfvars
