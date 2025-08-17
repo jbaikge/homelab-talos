@@ -43,9 +43,9 @@ data "talos_machine_configuration" "controlplane" {
   machine_secrets  = talos_machine_secrets.this.machine_secrets
   talos_version    = var.talos_version
   config_patches = [
-    file("${path.module}/files/cluster-scheduling.yml"),
-    file("${path.module}/files/cluster-subnets.yml"),
-    templatefile("${path.module}/files/cluster-common.yml", {
+    file("${path.module}/files/cluster-scheduling.yaml"),
+    file("${path.module}/files/cluster-subnets.yaml"),
+    templatefile("${path.module}/files/cluster-common.yaml", {
       hostname      = each.key
       install_disk  = each.value.install_disk
       interface     = each.value.interface
@@ -65,8 +65,8 @@ data "talos_machine_configuration" "worker" {
   machine_secrets  = talos_machine_secrets.this.machine_secrets
   talos_version    = var.talos_version
   config_patches = [
-    file("${path.module}/files/cluster-subnets.yml"),
-    templatefile("${path.module}/files/cluster-common.yml", {
+    file("${path.module}/files/cluster-subnets.yaml"),
+    templatefile("${path.module}/files/cluster-common.yaml", {
       hostname      = each.key
       install_disk  = each.value.install_disk
       interface     = each.value.interface
