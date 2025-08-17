@@ -54,6 +54,9 @@ data "talos_machine_configuration" "controlplane" {
       gateway       = var.gateway
       installer_url = data.talos_image_factory_urls.this.urls.installer
     }),
+    templatefile("${path.module}/files/cloudflared.yaml", {
+      tunnel_token = var.cloudflared_tunnel_token
+    }),
   ]
 }
 
@@ -74,6 +77,9 @@ data "talos_machine_configuration" "worker" {
       netmask       = var.netmask
       gateway       = var.gateway
       installer_url = data.talos_image_factory_urls.this.urls.installer
+    }),
+    templatefile("${path.module}/files/cloudflared.yaml", {
+      tunnel_token = var.cloudflared_tunnel_token
     }),
   ]
 }

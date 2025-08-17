@@ -77,3 +77,11 @@ variable "workers" {
     install_disk = string
   }))
 }
+
+# Cloudflare
+
+variable "cloudflared_tunnel_token" {
+  description = "Cloudflared token for Talos system extension. Create in the web interface at Zero-Trust > Networks > Tunnels > Create Cloudflare Tunnel"
+  type        = string
+  sensitive   = true
+}
