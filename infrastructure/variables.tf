@@ -109,6 +109,11 @@ variable "cloudflared_tunnel_token" {
   sensitive   = true
 }
 
+variable "cloudflare_tunnel_id" {
+  description = "Cloudflare tunnel ID"
+  type        = string
+}
+
 variable "cloudflare_zone" {
   description = "Domain used to expose services to the Internet"
   type        = string
