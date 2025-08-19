@@ -3,7 +3,6 @@ data "talos_image_factory_extensions_versions" "this" {
   talos_version = var.talos_version
   filters = {
     names = [
-      "cloudflared",
       "nut-client",
       "iscsi-tools",
     ]
@@ -54,9 +53,6 @@ data "talos_machine_configuration" "controlplane" {
       gateway       = var.gateway
       installer_url = data.talos_image_factory_urls.this.urls.installer
     }),
-    templatefile("${path.module}/files/cloudflared.yaml", {
-      tunnel_token = var.cloudflared_tunnel_token
-    }),
     templatefile("${path.module}/files/nut.yaml", {
       upsmon_host = var.upsmon_host
       upsmon_user = var.upsmon_user
@@ -82,9 +78,6 @@ data "talos_machine_configuration" "worker" {
       netmask       = var.netmask
       gateway       = var.gateway
       installer_url = data.talos_image_factory_urls.this.urls.installer
-    }),
-    templatefile("${path.module}/files/cloudflared.yaml", {
-      tunnel_token = var.cloudflared_tunnel_token
     }),
     templatefile("${path.module}/files/nut.yaml", {
       upsmon_host = var.upsmon_host
