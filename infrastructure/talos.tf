@@ -140,3 +140,14 @@ resource "local_file" "kubeconfig" {
   filename        = var.kubeconfig_path
   file_permission = "0644"
 }
+
+data "talos_cluster_health" "this" {
+  client_configuration = talos_machine_secrets.this.client_configuration
+  control_plane_nodes  = [for k, v in var.controlplanes : v.ip]
+  endpoints            = [for k, v in var.controlplanes : v.ip]
+  worker_nodes         = [for k, v in var.workers : v.ip]
+
+  depends_on = [
+    talos_machine_bootstrap.this,
+  ]
+}
