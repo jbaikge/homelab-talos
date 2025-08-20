@@ -5,6 +5,10 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "~> 5.8"
     }
+    flux = {
+      source  = "fluxcd/flux"
+      version = "1.6.4"
+    }
     local = {
       source  = "hashicorp/local"
       version = "~> 2.5"
@@ -38,6 +42,20 @@ terraform {
 
 provider "cloudflare" {
   api_token = var.cloudflare_token
+}
+
+provider "flux" {
+  kubernetes = {
+    config_path = local_file.kubeconfig.filename
+  }
+  git = {
+    url    = "https://github.com/${var.github_organization}/${var.github_repository}.git"
+    branch = "main"
+    http = {
+      username = var.github_username
+      password = var.github_token
+    }
+  }
 }
 
 provider "local" {}

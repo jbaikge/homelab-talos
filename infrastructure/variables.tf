@@ -135,3 +135,26 @@ variable "cloudflare_email" {
   type        = string
   sensitive   = true
 }
+
+# GitHub
+
+variable "github_organization" {
+  description = "Repository organization"
+  type        = string
+}
+
+variable "github_repository" {
+  description = "Repository name"
+  type        = string
+}
+
+variable "github_username" {
+  description = "Username"
+  type        = string
+}
+
+variable "github_token" {
+  description = "PAT with Repo permission"
+  type        = string
+  sensitive   = true
+}
