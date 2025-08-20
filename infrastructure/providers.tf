@@ -5,10 +5,6 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "~> 5.8"
     }
-    helm = {
-      source  = "hashicorp/helm"
-      version = "~> 3.0"
-    }
     local = {
       source  = "hashicorp/local"
       version = "~> 2.5"
@@ -42,12 +38,6 @@ terraform {
 
 provider "cloudflare" {
   api_token = var.cloudflare_token
-}
-
-provider "helm" {
-  kubernetes = {
-    config_path = "../config/kubeconfig.yaml"
-  }
 }
 
 provider "local" {}
