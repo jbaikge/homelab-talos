@@ -1,6 +1,6 @@
 resource "flux_bootstrap_git" "this" {
   embedded_manifests = true
-  path               = "cluster"
+  path               = "clusters/hardwood"
   namespace          = var.flux_namespace
 
   depends_on = [
