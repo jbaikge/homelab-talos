@@ -1,5 +1,8 @@
 name: kubeconform
-on: push
+on:
+  pull_request:
+    branches:
+      - main
 jobs:
   kubeconform:
     runs-on: ubuntu-latest
