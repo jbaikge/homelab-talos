@@ -5,6 +5,7 @@ in
 pkgs.mkShell {
     packages = [
         pkgs.age
+        pkgs.fluxcd
         pkgs.k9s
         pkgs.kubeconform
         pkgs.kubectl
