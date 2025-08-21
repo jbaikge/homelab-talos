@@ -6,6 +6,7 @@ pkgs.mkShell {
     packages = [
         pkgs.age
         pkgs.k9s
+        pkgs.kubeconform
         pkgs.kubectl
         pkgs.kubernetes-helm
         pkgs.openssl
