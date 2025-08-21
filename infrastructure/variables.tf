@@ -158,3 +158,16 @@ variable "github_token" {
   type        = string
   sensitive   = true
 }
+
+# Flux
+
+variable "flux_namespace" {
+  description = "Namespace to install Flux"
+  type        = string
+  default     = "flux-system"
+}
+
+variable "age_key_path" {
+  description = "Path to age key"
+  type        = string
+}
