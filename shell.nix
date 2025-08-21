@@ -16,8 +16,8 @@ pkgs.mkShell {
         pkgs.talosctl
     ];
 
-    KUBECONFIG="${PROJECT_ROOT}/config/kubeconfig.yaml";
-    TALOSCONFIG="${PROJECT_ROOT}/config/talosconfig.yaml";
+    KUBECONFIG="${PROJECT_ROOT}/kubeconfig.yaml";
+    TALOSCONFIG="${PROJECT_ROOT}/talosconfig.yaml";
 
     shellHook = '''';
 }
