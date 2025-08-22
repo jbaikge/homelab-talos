@@ -35,7 +35,7 @@ metadata:
 spec:
   secretName: um
   subject:
-    organization:
+    organizations:
       - cert-manager
   dnsNames:
     - "${SECRET_DOMAIN}"
