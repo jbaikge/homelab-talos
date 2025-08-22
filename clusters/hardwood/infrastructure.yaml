@@ -4,9 +4,12 @@ metadata:
   name: infrastructure-controllers
   namespace: flux-system
 spec:
-  interval: 10m
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
   path: ./infrastructure/controllers
   prune: true
+  wait: true
   dependsOn:
     - name: namespaces
   sourceRef:
@@ -29,7 +32,9 @@ metadata:
   name: infrastructure-configs
   namespace: flux-system
 spec:
-  interval: 10m
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
   path: ./infrastructure/configs
   prune: true
   dependsOn:
