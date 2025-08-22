@@ -14,4 +14,4 @@ jobs:
         with:
           entrypoint: '/kubeconform'
           # Don't quote the URL? I guess it causes parsing problems
-          args: "-schema-location default -schema-location https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json -summary -ignore-missing-schemas config infrastructure"
+          args: "-schema-location default -schema-location https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json -summary -ignore-missing-schemas config infrastructure namespaces"
