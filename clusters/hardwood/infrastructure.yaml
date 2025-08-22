@@ -8,7 +8,7 @@ spec:
   path: ./infrastructure/controllers
   prune: true
   dependsOn:
-    - name: config
+    - name: namespaces
   sourceRef:
     kind: GitRepository
     name: flux-system
