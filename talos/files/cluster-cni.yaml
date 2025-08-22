@@ -1,0 +1,7 @@
+# This is to remove the CNI so it can be replaced with Cilium
+#
+# https://www.talos.dev/v1.10/kubernetes-guides/network/deploying-cilium/
+cluster:
+  network:
+    cni:
+      name: none
