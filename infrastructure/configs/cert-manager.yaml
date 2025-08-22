@@ -33,7 +33,7 @@ metadata:
   name: certificate
   namespace: cert-manager
 spec:
-  secretName: um
+  secretName: "${SECRET_DOMAIN}"
   subject:
     organizations:
       - cert-manager
