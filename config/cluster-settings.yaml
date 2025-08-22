@@ -5,3 +5,4 @@ metadata:
   namespace: flux-system
 data:
   TIMEZONE: "America/New_York"
+  METALLB_ADDRESS_POOL: "10.100.6.128 - 10.100.6.191" # 10.100.6.128/26
