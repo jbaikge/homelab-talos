@@ -5,5 +5,5 @@ metadata:
   namespace: flux-system
 data:
   TIMEZONE: "America/New_York"
-  METALLB_ADDRESS_POOL: "10.100.6.128 - 10.100.6.191" # 10.100.6.128/26
+  CILIUM_ADDRESS_CIDR: "10.100.6.128/26"
   LETS_ENCRYPT_SERVER: "https://acme-v02.api.letsencrypt.org/directory"
