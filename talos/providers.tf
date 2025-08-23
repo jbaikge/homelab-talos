@@ -9,6 +9,10 @@ terraform {
       source  = "fluxcd/flux"
       version = "1.6.4"
     }
+    helm = {
+      source  = "hashicorp/helm"
+      version = "~> 3.0"
+    }
     kubernetes = {
       source  = "hashicorp/kubernetes"
       version = "~> 2.38"
@@ -59,6 +63,12 @@ provider "flux" {
       username = var.github_username
       password = var.github_token
     }
+  }
+}
+
+provider "helm" {
+  kubernetes = {
+    config_path = local_file.kubeconfig.filename
   }
 }
 
