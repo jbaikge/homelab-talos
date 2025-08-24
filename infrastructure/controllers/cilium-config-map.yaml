@@ -71,6 +71,9 @@ data:
 
     gatewayAPI:
       enabled: true
+      enableAlpn: true
+      gatewayClass:
+        create: true
     envoy:
       securityContext:
         capabilities:
@@ -81,10 +84,10 @@ data:
       enabled: true
       default: true
       loadbalancerMode: shared
-      service:
-        # Not sure why this isn't done with ingressController.service.loadBalancerIP
-        annotations:
-          io.cilium/lb-ipam-ips: 10.100.6.128
+      # Not sure why this isn't done with ingressController.service.loadBalancerIP
+      # service:
+      #   annotations:
+      #    io.cilium/lb-ipam-ips: 10.100.6.128
 
     hubble:
       enabled: true
