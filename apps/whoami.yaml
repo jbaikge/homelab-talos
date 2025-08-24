@@ -40,6 +40,8 @@ kind: Gateway
 metadata:
   name: whoami-gateway
   namespace: default
+  annotations:
+    cert-manager.io/issuer: letsencrypt
 spec:
   gatewayClassName: cilium
   listeners:
@@ -47,6 +49,9 @@ spec:
       protocol: HTTPS
       port: 443
       hostname: whoami.baconvacation.com
+      allowedRoutes:
+        namespaces:
+          from: ALL
       tls:
         mode: Terminate
         certificateRefs:
