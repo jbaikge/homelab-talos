@@ -72,8 +72,8 @@ data:
     gatewayAPI:
       enabled: true
       enableAlpn: true
-      gatewayClass:
-        create: true
+      # gatewayClass:
+      #   create: auto
     envoy:
       securityContext:
         capabilities:
