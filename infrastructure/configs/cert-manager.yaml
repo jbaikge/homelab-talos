@@ -26,20 +26,20 @@ spec:
             apiKeySecretRef:
               name: cloudflare-api-key-secret
               key: api-key
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: certificate
-  namespace: cert-manager
-spec:
-  secretName: "${SECRET_DOMAIN}"
-  subject:
-    organizations:
-      - cert-manager
-  dnsNames:
-    - "${SECRET_DOMAIN}"
-    - "*.${SECRET_DOMAIN}"
-  issuerRef:
-    name: letsencrypt
-    kind: ClusterIssuer
+# ---
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: certificate
+#   namespace: cert-manager
+# spec:
+#   secretName: "${SECRET_DOMAIN}"
+#   subject:
+#     organizations:
+#       - cert-manager
+#   dnsNames:
+#     - "${SECRET_DOMAIN}"
+#     - "*.${SECRET_DOMAIN}"
+#   issuerRef:
+#     name: letsencrypt
+#     kind: ClusterIssuer
