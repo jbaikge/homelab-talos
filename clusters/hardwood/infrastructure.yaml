@@ -12,6 +12,11 @@ spec:
   wait: true
   dependsOn:
     - name: config
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      name: cilium
+      namespace: kube-system
   sourceRef:
     kind: GitRepository
     name: flux-system
