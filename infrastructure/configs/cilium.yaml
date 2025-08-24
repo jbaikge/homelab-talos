@@ -46,8 +46,7 @@ spec:
       tls:
         certificateRefs:
           - kind: Secret
-            name: letsencrypt-cloudflare
-            namespace: cert-manager
+            name: letsencrypt-wildcard-cert
       allowedRoutes:
         namespaces:
           from: All
@@ -58,8 +57,7 @@ spec:
       tls:
         certificateRefs:
           - kind: Secret
-            name: letsencrypt-cloudflare
-            namespace: cert-manager
+            name: letsencrypt-domain-cert
       allowedRoutes:
         namespaces:
           from: All
