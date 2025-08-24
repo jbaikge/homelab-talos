@@ -51,7 +51,7 @@ spec:
       hostname: whoami.baconvacation.com
       allowedRoutes:
         namespaces:
-          from: ALL
+          from: All
       tls:
         mode: Terminate
         certificateRefs:
