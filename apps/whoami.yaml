@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -20,84 +21,23 @@ spec:
         image: traefik/whoami:latest
         ports:
         - containerPort: 80
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: whoami-loadbalancer
-#   namespace: default
-# spec:
-#   type: LoadBalancer
-#   selector:
-#     app: whoami
-#   ports:
-#   - protocol: TCP
-#     port: 80
-#     targetPort: 80
-# ---
-# apiVersion: gateway.networking.k8s.io/v1
-# kind: Gateway
-# metadata:
-#   name: whoami-gateway
-#   namespace: default
-#   annotations:
-#     cert-manager.io/issuer: letsencrypt
-# spec:
-#   gatewayClassName: cilium
-#   listeners:
-#     - name: https-listener
-#       protocol: HTTPS
-#       port: 443
-#       hostname: whoami.baconvacation.com
-#       allowedRoutes:
-#         namespaces:
-#           from: All
-#       tls:
-#         mode: Terminate
-#         certificateRefs:
-#           - kind: Secret
-#             name: letsencrypt-cloudflare
-#             namespace: cert-manager
-# ---
-# apiVersion: gateway.networking.k8s.io/v1
-# kind: HTTPRoute
-# metadata:
-#   name: whoami-https-route
-#   namespace: default
-# spec:
-#   parentRefs:
-#     - name: whoami-gateway
-#       namespace: default
-#   hostnames:
-#     - whoami.baconvacation.com
-#   rules:
-#     - matches:
-#         - path:
-#             type: PathPrefix
-#             value: /
-#       backendRefs:
-#         - name: whoami
-#           port: 80
-# ---
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: whoami-ingress
-#   namespace: default
-# spec:
-#   ingressClassName: cilium
-#   rules:
-#     - host: whoami.baconvacation.com
-#       http:
-#         paths:
-#           - path: /
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: whoami
-#                 port:
-#                   number: 80
-#   tls:
-#     - hosts:
-#         - whoami.baconvacation.com
-#       secretName: letsencrypt-cloudflare
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: whoami-route
+  namespace: default
+spec:
+  parentRefs:
+    - name: cilium-gateway
+      namespace: gateway
+  hostnames:
+    - "whoami.${SECRET_DOMAIN}"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: whoami
+          port: 80
