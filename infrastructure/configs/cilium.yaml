@@ -31,8 +31,8 @@ kind: Gateway
 metadata:
   name: cilium-gateway
   namespace: gateway
-  # annotations:
-  #   cert-manager.io/issuer: letsencrypt
+  annotations:
+    cert-manager.io/issuer: letsencrypt
 spec:
   gatewayClassName: cilium
   addresses:
