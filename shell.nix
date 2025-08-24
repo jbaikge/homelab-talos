@@ -5,6 +5,7 @@ in
 pkgs.mkShell {
     packages = [
         pkgs.age
+        pkgs.cilium-cli
         pkgs.fluxcd
         pkgs.k9s
         pkgs.kubeconform
