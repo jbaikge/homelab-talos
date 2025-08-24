@@ -20,7 +20,7 @@ This is a home lab with Talos Linux and Kubernetes to replace the existing home 
 | Device                    | Count | OS Disk | Data Disk | RAM  | OS          | Purpose               |
 | ------------------------- | ----: | ------- | --------- | ---- | ----------- | --------------------- |
 | Supermicro SYS-5018A-FTN4 | 4     | 1TB     | None      | 16GB | Talos Linux | 3x Control, 1x Worker |
-| Supermicro SYS-           | 1     | 512GB   | 4x4TB     | 32GB | TrueNAS     | Storage               |
+| Supermicro SYS-5019C-WR   | 1     | 512GB   | 4x4TB     | 32GB | TrueNAS     | Storage               |
 
 ## Helpful Resources
 
