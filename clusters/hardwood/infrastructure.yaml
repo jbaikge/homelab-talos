@@ -9,7 +9,8 @@ spec:
   timeout: 5m
   path: ./infrastructure/controllers
   prune: true
-  wait: true
+  # performs a health check on all reconciled resources
+  # wait: true
   dependsOn:
     - name: config
   healthChecks:
