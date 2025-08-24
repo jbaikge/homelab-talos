@@ -47,6 +47,7 @@ spec:
       port: 443
       hostname: whoami.baconvacation.com
       tls:
+        mode: Terminate
         certificateRefs:
           - kind: Secret
             name: letsencrypt-cloudflare
