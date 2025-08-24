@@ -1,31 +1,12 @@
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: cloudflare-api-key-secret
-  namespace: cert-manager
-type: Opaque
-stringData:
-  api-key: "${SECRET_CLOUDFLARE_API_KEY}"
----
-apiVersion: cert-manager.io/v1
-kind: Issuer
-metadata:
-  name: letsencrypt
-  namespace: cert-manager
-spec:
-  acme:
-    email: "${SECRET_LETS_ENCRYPT_EMAIL}"
-    server: "${LETS_ENCRYPT_SERVER}"
-    privateKeySecretRef:
-      name: letsencrypt-cloudflare
-    solvers:
-      - dns01:
-          cloudflare:
-            email: "${SECRET_CLOUDFLARE_EMAIL}"
-            apiKeySecretRef:
-              name: cloudflare-api-key-secret
-              key: api-key
+# ---
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#   name: cloudflare-api-key-secret
+#   namespace: cert-manager
+# type: Opaque
+# stringData:
+#   api-key: "${SECRET_CLOUDFLARE_API_KEY}"
 # ---
 # apiVersion: cert-manager.io/v1
 # kind: Certificate
