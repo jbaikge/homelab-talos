@@ -9,7 +9,7 @@ stringData:
   api-key: "${SECRET_CLOUDFLARE_API_KEY}"
 ---
 apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
+kind: Issuer
 metadata:
   name: letsencrypt
   namespace: cert-manager
