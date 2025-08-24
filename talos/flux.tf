@@ -1,7 +1,7 @@
-resource "flux_bootstrap_git" "this" {
-  embedded_manifests = true
-  path               = "clusters/hardwood"
-  namespace          = var.flux_namespace
+resource "kubernetes_namespace" "flux" {
+  metadata {
+    name = var.flux_namespace
+  }
 
   depends_on = [
     data.talos_cluster_health.this,
@@ -19,6 +19,16 @@ resource "kubernetes_secret" "sops_age" {
   }
 
   depends_on = [
-    flux_bootstrap_git.this,
+    kubernetes_namespace.flux,
+  ]
+}
+
+resource "flux_bootstrap_git" "this" {
+  embedded_manifests = true
+  path               = "clusters/hardwood"
+  namespace          = var.flux_namespace
+
+  depends_on = [
+    kubernetes_secret.sops_age,
   ]
 }
