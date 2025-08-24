@@ -1,7 +1,17 @@
 # This is to remove the CNI so it can be replaced with Cilium
 #
 # https://www.talos.dev/v1.10/kubernetes-guides/network/deploying-cilium/
+# https://blog.stonegarden.dev/articles/2024/08/talos-proxmox-tofu/
 cluster:
   network:
     cni:
       name: none
+  proxy:
+    disabled: true
+  inlineManifests:
+    - name: cilium-values
+      contents: |
+        ${indent(8, cilium_values)}
+    - name: cilium-bootstrap
+      contents: |
+        ${indent(8, cilium_install)}
