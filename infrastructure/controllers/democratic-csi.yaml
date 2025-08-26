@@ -56,7 +56,13 @@ spec:
 
     driver:
       config:
-        driver: freenas-iscsi
+        driver: freenas-api-iscsi
+        httpConnection:
+          protocol: https
+          apiKey: "${SECRET_TRUENAS_API_KEY}"
+          host: "${SECRET_TRUENAS_HOST}"
+          port: 443
+          allowInsecure: true
         sshConnection:
           host: "${SECRET_TRUENAS_HOST}"
           username: "${SECRET_TRUENAS_USER}"
