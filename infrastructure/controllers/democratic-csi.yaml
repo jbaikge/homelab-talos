@@ -118,6 +118,11 @@ spec:
         parameters:
           detachedSnapshots: "true"
 
+    controller:
+      driver:
+        image:
+          tag: next
+
     node:
       hostPID: true
       driver:
