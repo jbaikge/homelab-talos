@@ -119,6 +119,10 @@ spec:
     node:
       hostPID: true
       driver:
+        # There is no way this works and pulls in the "next" docker image,
+        # which supports TrueNAS 25+
+        image:
+          tag: next
         extraEnv:
           - name: ISCSIADM_HOST_STRATEGY
             value: nsenter
