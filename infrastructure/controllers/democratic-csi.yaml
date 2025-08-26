@@ -71,7 +71,7 @@ spec:
           cli:
             sudoEnabled: true
           datasetParentName: tank/iscsi/vols
-          detachedSnapshotDatasetParentName: tank/iscsi/snaps
+          detachedSnapshotsDatasetParentName: tank/iscsi/snaps
           zvolCompression: ""
           zvolDedup: ""
           zvolEnableReservation: false
