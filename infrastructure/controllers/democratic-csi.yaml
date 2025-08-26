@@ -128,5 +128,7 @@ spec:
             value: nsenter
           - name: ISCSIADM_HOST_PATH
             value: /usr/local/sbin/iscsiadm
-        iscsiDirHostPath: /usr/local/etc/iscsi
+        # iscsiDirHostPath: /usr/local/etc/iscsi
+        # https://github.com/siderolabs/extensions/issues/688
+        iscsiDirHostPath: /var/iscsi
         iscsiDirHostPathType: ""
