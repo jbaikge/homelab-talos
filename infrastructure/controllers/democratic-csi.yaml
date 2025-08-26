@@ -56,7 +56,7 @@ spec:
 
     driver:
       config:
-        driver: freenas-api-iscsi
+        driver: freenas-iscsi
         httpConnection:
           protocol: https
           apiKey: "${SECRET_TRUENAS_API_KEY}"
