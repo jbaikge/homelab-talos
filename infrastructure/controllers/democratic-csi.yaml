@@ -51,40 +51,65 @@ spec:
         name: democratic-csi
         namespace: democratic-csi
   values:
-    driver: freenas-iscsi
-    instance_id: ""
     csiDriver:
-      name: democratic-csi-iscsi
-    sshConnection:
-      host: "${SECRET_TRUENAS_HOST}"
-      username: "${SECRET_TRUENAS_USER}"
-      privateKey: "${SECRET_TRUENAS_PRIVATE_KEY}"
-    zfs:
-      cli:
-        sudoEnabled: true
-      datasetParentName: tank/iscsi/vols
-      detachedSnapshotDatasetParentName: tank/iscsi/snaps
-      zvolCompression: ""
-      zvolDedup: ""
-      zvolEnableReservation: false
-      zvolBlocksize: 4k
-    iscsi:
-      targetPortals:
-        - "${SECRET_TRUENAS_HOST}:3260"
-      interface: ""
-      namePrefix: "csi-"
-      nameSuffix: ""
-      targetGroups:
-        - targetGroupPortalGroup: 1
-          targetGroupInitiatorGroup: 1
-          targetGroupAuthType: None
-          targetGroupAuthGroup: ""
-      extentInsecureTpc: true
-      extentXenCompat: false
-      extentDisablePhysicalBlocksize: true
-      extentBlocksize: 512
-      extentRpm: "SSD"
-      extentAvailThreshold: 0
+      name: "org.democratic-csi.iscsi"
+
+    driver:
+      config:
+        driver: freenas-iscsi
+        sshConnection:
+          host: "${SECRET_TRUENAS_HOST}"
+          username: "${SECRET_TRUENAS_USER}"
+          privateKey: "${SECRET_TRUENAS_PRIVATE_KEY}"
+        zfs:
+          cli:
+            sudoEnabled: true
+          datasetParentName: tank/iscsi/vols
+          detachedSnapshotDatasetParentName: tank/iscsi/snaps
+          zvolCompression: ""
+          zvolDedup: ""
+          zvolEnableReservation: false
+          zvolBlocksize: 4k
+        iscsi:
+          targetPortals:
+            - "${SECRET_TRUENAS_HOST}:3260"
+          interface: ""
+          namePrefix: "csi-"
+          nameSuffix: ""
+          targetGroups:
+            - targetGroupPortalGroup: 1
+              targetGroupInitiatorGroup: 1
+              targetGroupAuthType: None
+              targetGroupAuthGroup: ""
+          extentInsecureTpc: true
+          extentXenCompat: false
+          extentDisablePhysicalBlocksize: true
+          extentBlocksize: 512
+          extentRpm: "SSD"
+          extentAvailThreshold: 0
+
+    storageClasses:
+      - name: truenas-iscsi
+        defaultClass: true
+        reclaimPolicy: Delete
+        volumeBindingMode: Immediate
+        allowVolumeExpansion: true
+        parameters:
+          fsType: ext4
+          detachedVolumesFromSnapshots: "false"
+        mountOptions: []
+        secrets:
+          provisioner-secret:
+          controller-publish-secret:
+          node-stage-secret:
+          node-publish-secret:
+          controller-expand-secret:
+
+    volumeSnapshotClasses:
+      - name: truenas-iscsi
+        parameters:
+          detachedSnapshots: "true"
+
     node:
       hostPID: true
       driver:
