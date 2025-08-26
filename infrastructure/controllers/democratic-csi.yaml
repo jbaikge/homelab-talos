@@ -53,6 +53,8 @@ spec:
   values:
     driver: freenas-iscsi
     instance_id: ""
+    csiDriver:
+      name: democratic-csi-iscsi
     sshConnection:
       host: "${SECRET_TRUENAS_HOST}"
       username: "${SECRET_TRUENAS_USER}"
