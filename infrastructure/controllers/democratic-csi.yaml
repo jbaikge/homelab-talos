@@ -78,7 +78,8 @@ spec:
           zvolBlocksize: 4k
         iscsi:
           targetPortals:
-            - "${SECRET_TRUENAS_HOST}:3260"
+            - "${SECRET_TRUENAS_PORTAL_1}"
+            - "${SECRET_TRUENAS_PORTAL_2}"
           interface: ""
           namePrefix: "csi-"
           nameSuffix: ""
