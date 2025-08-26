@@ -4,3 +4,4 @@ resources:
   - cert-manager.yaml
   - cilium-config-map.yaml
   - cilium.yaml
+  - democratic-csi.yaml
