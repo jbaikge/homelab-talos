@@ -67,8 +67,7 @@ spec:
         sshConnection:
           host: "${SECRET_TRUENAS_HOST}"
           username: "${SECRET_TRUENAS_USER}"
-          privateKey: |
-{{ $SECRET_TRUENAS_PRIVATE_KEY | indent 10 }}
+          password: "${SECRET_TRUENAS_PASS}"
         zfs:
           cli:
             sudoEnabled: true
