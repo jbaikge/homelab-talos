@@ -31,6 +31,7 @@ spec:
               name: cloudflare-api-token
               key: api-token
 ---
+# yaml-language-server: $schema=https://github.com/datreeio/CRDs-catalog/raw/refs/heads/main/gateway.networking.k8s.io/gateway_v1.json
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
@@ -44,9 +45,17 @@ spec:
     - type: IPAddress
       value: 10.100.6.130
   listeners:
+    - protocol: HTTP
+      port: 80
+      name: gateway-wildcard-http
+      hostname: "*.${SECRET_DOMAIN}"
+    - protocol: HTTP
+      port: 80
+      name: gateway-domain-http
+      hostname: "${SECRET_DOMAIN}"
     - protocol: HTTPS
       port: 443
-      name: https-gateway
+      name: gateway-wildcard-https
       hostname: "*.${SECRET_DOMAIN}"
       tls:
         certificateRefs:
@@ -57,7 +66,7 @@ spec:
           from: All
     - protocol: HTTPS
       port: 443
-      name: https-domain-gateway
+      name: gateway-domain-https
       hostname: "${SECRET_DOMAIN}"
       tls:
         certificateRefs:
@@ -66,3 +75,45 @@ spec:
       allowedRoutes:
         namespaces:
           from: All
+---
+# yaml-language-server: $schema=https://github.com/datreeio/CRDs-catalog/raw/refs/heads/main/gateway.networking.k8s.io/httproute_v1.json
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: redirect-wildcard-https
+  namespace: gateway
+spec:
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: cilium-gateway
+      namespace: gateway
+      sectionName: gateway-wildcard-http
+  rules:
+    - filters:
+        - type: RequestRedirect
+          requestRedirect:
+            statusCode: 302
+            scheme: https
+            port: 443
+---
+# yaml-language-server: $schema=https://github.com/datreeio/CRDs-catalog/raw/refs/heads/main/gateway.networking.k8s.io/httproute_v1.json
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: redirect-domain-https
+  namespace: gateway
+spec:
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: cilium-gateway
+      namespace: gateway
+      sectionName: gateway-domain-http
+  rules:
+    - filters:
+        - type: RequestRedirect
+          requestRedirect:
+            statusCode: 302
+            scheme: https
+            port: 443
