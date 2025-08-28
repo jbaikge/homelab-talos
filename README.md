@@ -30,3 +30,4 @@ These links helped set this repo up and define how a lot of it works:
 - [toboshii/home-ops](https://github.com/toboshii/home-ops)
 - [Talos Kubernetes on Proxmox using OpenTofu](https://blog.stonegarden.dev/articles/2024/08/talos-proxmox-tofu/)
 - [linucksrox:gist](https://gist.github.com/linucksrox/2879046995953ad3bc097183864832dc)
+- [sunsided/epimelitis](https://github.com/sunsided/epimelitis)
