@@ -21,6 +21,7 @@ configMapGenerator:
     namespace: home-assistant
     literals:
       - TZ="America/New_York"
+      - DISABLE_JEMALLOC="1"
 
 configurations:
   - kustomizeconfig.yaml
