@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: home-assistant-config
+  name: home-assistant-config-root
   namespace: home-assistant
   annotations:
     volume.beta.kubernetes.io/storage-class: truenas-iscsi
