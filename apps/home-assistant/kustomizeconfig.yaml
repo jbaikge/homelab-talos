@@ -1,4 +1,4 @@
-namedReference:
+nameReference:
   - kind: Secret
     version: v1
     fieldSpaces:
