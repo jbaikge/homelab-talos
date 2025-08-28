@@ -33,7 +33,7 @@ spec:
             optional: true
         - name: ttyusb0
           hostPath:
-            path: /dev/ttyUSB0
+            path: /dev/serial/by-id/usb-1a86_USB_Single_Serial_58E3038049-if00
             type: CharDevice
       containers:
         - name: app
