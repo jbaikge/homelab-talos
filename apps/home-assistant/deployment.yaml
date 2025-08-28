@@ -19,9 +19,6 @@ spec:
       labels:
         app: home-assistant
     spec:
-      # Select the node with the zwave usb stick in it
-      nodeSelector:
-        kubernetes.io/hostname: maple
       restartPolicy: Always
       volumes:
         - name: home-assistant-config-root
@@ -31,10 +28,6 @@ spec:
           configMap:
             name: home-assistant-config-files
             optional: true
-        - name: ttyusb0
-          hostPath:
-            path: /dev/serial/by-id/usb-1a86_USB_Single_Serial_58E3038049-if00
-            type: CharDevice
       containers:
         - name: app
           image: "ghcr.io/home-assistant/home-assistant:2025.8.3"
@@ -117,5 +110,3 @@ spec:
             - name: home-assistant-config-files
               mountPath: /config/configuration.yaml
               subPath: configuration.yaml
-            - name: ttyusb0
-              mountPath: /dev/ttyUSB0
