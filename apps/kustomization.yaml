@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - whoami
   - kubernetes-dashboard
-  - home-assistant
+  # - home-assistant
