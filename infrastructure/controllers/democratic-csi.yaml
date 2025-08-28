@@ -83,9 +83,11 @@ spec:
           zvolEnableReservation: false
           zvolBlocksize: 4k
         iscsi:
-          targetPortals:
-            - "${SECRET_TRUENAS_PORTAL_1}"
-            - "${SECRET_TRUENAS_PORTAL_2}"
+          targetPortal: "${SECRET_TRUENAS_PORTAL_1}"
+          # 2025-08-28: Multipath is not ready right now
+          # targetPortals:
+          #   - "${SECRET_TRUENAS_PORTAL_1}"
+          #   - "${SECRET_TRUENAS_PORTAL_2}"
           interface: ""
           namePrefix: "csi-"
           nameSuffix: ""
