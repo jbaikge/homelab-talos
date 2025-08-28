@@ -1,0 +1,64 @@
+# yaml-language-server: $schema=https://github.com/yannh/kubernetes-json-schema/raw/refs/heads/master/v1.33.0/deployment-apps-v1.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zwave
+  namespace: zwave
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zwave
+  template:
+    metadata:
+      labels:
+        app: zwave
+    spec:
+      # Select the node with the zwave usb stick in it
+      nodeSelector:
+        kubernetes.io/hostname: maple
+      volumes:
+        - name: zwave-config-root
+          persistentVolumeClaim:
+            claimName: zwave-config-root
+        - name: zwavestick
+          hostPath:
+            path: /dev/serial/by-id/usb-1a86_USB_Single_Serial_58E3038049-if00
+            type: CharDevice
+      containers:
+        - name: zwave
+          image: "zwavejs/zwave-js-ui:11.2.1"
+          livenessProbe:
+            failureThreshold: 10
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+            httpGet:
+              path: /health
+              port: http
+              httpHeaders:
+                - name: Accept
+                  value: text/plain
+          ports:
+            - containerPort: 8091
+              name: http
+              protocol: TCP
+            - containerPort: 3000
+              name: websocket
+              protocol: TCP
+          resources:
+            limits:
+              cpu: "1"
+              memory: 512Mi
+            requests:
+              cpu: "1"
+              memory: 400Mi
+          securityContext:
+            allowPrivilegeEscalation: true
+            privileged: true
+          volumeMounts:
+            - mountPath: /dev/zwave
+              name: zwavestick
+            - mountPath: /usr/src/app/store
+              name: zwave-config-root

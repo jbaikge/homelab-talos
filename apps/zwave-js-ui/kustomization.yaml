@@ -2,7 +2,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - whoami
-  - kubernetes-dashboard
-  - home-assistant
-  - zwave-js-ui
+  - namespace.yaml
+  - persistent-volume-claim.yaml
+  - deployment.yaml
+  - service.yaml
+  - gateway.yaml
+
+commonLabels:
+  app.kubernetes.io/name: zwave
+  app: zwave
