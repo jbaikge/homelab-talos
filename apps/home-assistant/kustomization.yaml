@@ -8,16 +8,19 @@ resources:
   - service.yaml
   - gateway.yaml
 
-namespace: home-assistant
-
 commonLabels:
   app.kubernetes.io/name: home-assistant
   app: home-assistant
 
 configMapGenerator:
-  - name: home-assistant-files
+  - name: home-assistant-config-files
+    namespace: home-assistant
     files:
       - configs/configuration.yaml
+  - name: home-assistant-config-env
+    namespace: home-assistant
+    literals:
+      - TZ="America/New_York"
 
 configurations:
   - kustomizeconfig.yaml

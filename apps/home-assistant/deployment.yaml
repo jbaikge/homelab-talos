@@ -46,7 +46,7 @@ spec:
               type: RuntimeDefault
           envFrom:
             - configMapRef:
-                name: home-assistant-config
+                name: home-assistant-config-env
           ports:
             - name: http
               containerPort: 8123
