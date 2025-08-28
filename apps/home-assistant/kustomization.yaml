@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://github.com/fluxcd-community/flux2-schemas/raw/refs/heads/main/kustomization-kustomize-v1beta1.json
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - namespace.yaml
+  - persistent-volume-claim.yaml
+  - deployment.yaml
+  - service.yaml
+  - gateway.yaml
+
+commonLabels:
+  app.kubernetes.io/name: home-assistant
+  app: home-assistant
+
+configMapGenerator:
+  - name: home-assistant-files
+    files:
+      - configs/configuration.yaml
+
+configurations:
+  - kustomizeconfig.yaml

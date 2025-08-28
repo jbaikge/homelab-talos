@@ -1,0 +1,116 @@
+# yaml-language-server: $schema=https://github.com/yannh/kubernetes-json-schema/raw/refs/heads/master/v1.33.0/deployment-apps-v1.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: home-assistant
+  namespace: home-assistant
+  labels:
+    app: home-assistant
+spec:
+  revisionHistoryLimit: 3
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: home-assistant
+  template:
+    metadata:
+      labels:
+        app: home-assistant
+    spec:
+      restartPolicy: Always
+      volumes:
+        - name: home-assistant-config-root
+          persistentVolumeClaim:
+            claimName: home-assistant-config-root
+        - name: home-assistant-config-files
+          configMap:
+            name: home-assistant-config-files
+            optional: true
+        # - name: ttyusb0
+        #   hostPath:
+        #     path: /dev/ttyUSB0
+        #     type: CharDevice
+      containers:
+        - name: app
+          image: "ghcr.io/home-assistant/home-assistant:2025.8.3"
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: true
+            runAsNonRoot: false
+            capabilities:
+              add:
+                - CAP_NET_RAW # fix: https://github.com/home-assistant/core/issues/62188
+            seccompProfile:
+              type: RuntimeDefault
+          envFrom:
+            - configMapRef:
+                name: home-assistant-config
+          ports:
+            - name: http
+              containerPort: 8123
+              protocol: TCP
+            - name: udp-ssdp
+              containerPort: 1900
+              protocol: UDP
+            - name: udp-ssdp-2
+              containerPort: 1901
+              protocol: UDP
+            - name: udp-mdns
+              containerPort: 5353
+              protocol: UDP
+            - name: udp-unicast
+              containerPort: 5683
+              protocol: UDP
+            - name: udp-homekit
+              containerPort: 51827
+              protocol: UDP
+            - name: udp-netbios-ns
+              containerPort: 137
+              protocol: UDP
+            - name: udp-netbios-dg
+              containerPort: 138
+              protocol: UDP
+            - name: udp-netbios-ss
+              containerPort: 139
+              protocol: UDP
+            - name: udp-printer
+              containerPort: 515
+              protocol: UDP
+            - name: udp-filemaker
+              containerPort: 5003
+              protocol: UDP
+            - name: tcp-sonos
+              containerPort: 1400
+              protocol: TCP
+            - name: tcp-sonos-tts
+              containerPort: 1443
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 2
+              memory: 2Gi
+            requests:
+              cpu: 500m
+              memory: 512Mi
+          livenessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 0
+            failureThreshold: 3
+            timeoutSeconds: 1
+            periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 0
+            failureThreshold: 3
+            timeoutSeconds: 1
+            periodSeconds: 10
+          volumeMounts:
+            - name: home-assistant-config-root
+              mountPath: /config
+            - name: home-assistant-config-files
+              mountPath: /config/configuration.yaml
+              subPath: configuration.yaml

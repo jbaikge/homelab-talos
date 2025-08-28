@@ -1,0 +1,6 @@
+namedReference:
+  - kind: Secret
+    version: v1
+    fieldSpaces:
+      - path: spec/template/spec/volumes/configMap/name
+        kind: Deployment
