@@ -8,5 +8,9 @@ spec:
   ports:
     - name: http
       port: 8091
+      targetPort: http
+    - name: websocket
+      port: 3000
+      targetPort: websocket
   selector:
     app: zwave
