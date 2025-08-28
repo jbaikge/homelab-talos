@@ -84,9 +84,7 @@ metadata:
   namespace: gateway
 spec:
   parentRefs:
-    - group: gateway.networking.k8s.io
-      kind: Gateway
-      name: cilium-gateway
+    - name: cilium-gateway
       namespace: gateway
       sectionName: gateway-wildcard-http
   rules:
@@ -95,7 +93,6 @@ spec:
           requestRedirect:
             statusCode: 302
             scheme: https
-            port: 443
 ---
 # yaml-language-server: $schema=https://github.com/datreeio/CRDs-catalog/raw/refs/heads/main/gateway.networking.k8s.io/httproute_v1.json
 apiVersion: gateway.networking.k8s.io/v1
@@ -105,9 +102,7 @@ metadata:
   namespace: gateway
 spec:
   parentRefs:
-    - group: gateway.networking.k8s.io
-      kind: Gateway
-      name: cilium-gateway
+    - name: cilium-gateway
       namespace: gateway
       sectionName: gateway-domain-http
   rules:
@@ -116,4 +111,3 @@ spec:
           requestRedirect:
             statusCode: 302
             scheme: https
-            port: 443
