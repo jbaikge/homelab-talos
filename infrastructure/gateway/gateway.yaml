@@ -10,7 +10,7 @@ spec:
   gatewayClassName: cilium
   addresses:
     - type: IPAddress
-      value: 10.100.6.130
+      value: "${CILIUM_HTTP_GATEWAY_ADDRESS}"
   listeners:
     - protocol: HTTP
       port: 80
