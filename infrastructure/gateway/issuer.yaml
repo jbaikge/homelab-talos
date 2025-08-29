@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://github.com/datreeio/CRDs-catalog/raw/refs/heads/main/cert-manager.io/issuer_v1.json
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-issuer
+  namespace: gateway
+spec:
+  acme:
+    email: "${SECRET_LETS_ENCRYPT_EMAIL}"
+    server: "${LETS_ENCRYPT_SERVER}"
+    privateKeySecretRef:
+      name: letsencrypt-key
+    solvers:
+      - dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              name: cloudflare-api-token
+              key: api-token

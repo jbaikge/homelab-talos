@@ -1,5 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - cilium
-  - democratic-csi
+  - namespace.yaml
+  - secret-cloudflare-token.yaml
+  - issuer.yaml
+  - gateway.yaml
+  - redirect-domain-https.yaml
+  - redirect-wildcard-https.yaml
