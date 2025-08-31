@@ -108,5 +108,11 @@ spec:
             - name: home-assistant-config-root
               mountPath: /config
             - name: home-assistant-config-files
+              mountPath: /config/automations.yaml
+              subPath: automations.yaml
+            - name: home-assistant-config-files
               mountPath: /config/configuration.yaml
               subPath: configuration.yaml
+            - name: home-assistant-config-files
+              mountPath: /config/scenes.yaml
+              subPath: scenes.yaml

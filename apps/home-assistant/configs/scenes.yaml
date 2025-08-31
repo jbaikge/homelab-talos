@@ -1,0 +1,26 @@
+- name: Outdoor Lights On
+  entities:
+    switch.deck_light:
+      friendly_name: "Deck Light "
+      state: "on"
+    switch.driveway_light:
+      friendly_name: "Driveway Light "
+      state: "on"
+    switch.porch_light:
+      friendly_name: "Porch Light "
+      state: "on"
+  icon: mdi:coach-lamp
+  metadata: {}
+- name: Outdoor Lights Off
+  entities:
+    switch.deck_light:
+      friendly_name: "Deck Light "
+      state: "off"
+    switch.driveway_light:
+      friendly_name: "Driveway Light "
+      state: "off"
+    switch.porch_light:
+      friendly_name: "Porch Light "
+      state: "off"
+  icon: mdi:coach-lamp
+  metadata: {}

@@ -16,12 +16,13 @@ configMapGenerator:
   - name: home-assistant-config-files
     namespace: home-assistant
     files:
+      - configs/automations.yaml
       - configs/configuration.yaml
+      - configs/scenes.yaml
   - name: home-assistant-config-env
     namespace: home-assistant
     literals:
       - TZ="America/New_York"
-      - DISABLE_JEMALLOC="1"
 
 configurations:
   - kustomizeconfig.yaml
