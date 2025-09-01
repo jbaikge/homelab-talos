@@ -1,6 +1,10 @@
 # Secret test: ${SECRET_HA_TEST}
 default_config:
 
+homeassistant:
+  allowlist_external_dirs:
+    - "/conifg"
+
 http:
   use_x_forwarded_for: true
   trusted_proxies:
