@@ -91,8 +91,8 @@
     - trigger: state
       entity_id:
         - binary_sensor.doorbell_person_detected
-      from: off
-      to: on
+      from: "off"
+      to: "on"
   actions:
     - action: camera.snapshot
       target:
