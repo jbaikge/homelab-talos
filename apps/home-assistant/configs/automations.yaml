@@ -26,7 +26,7 @@
       data: {}
       target:
         entity_id: scene.outside_lights_off
-- alias: Headboard Switch Light On
+- alias: Headboard Light Switch On
   description: ""
   mode: single
   triggers:
