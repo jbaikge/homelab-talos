@@ -1,4 +1,5 @@
-- description: ""
+- alias: Outside Lights at Sunset
+  description: ""
   mode: single
   triggers:
     - trigger: sun
@@ -11,8 +12,8 @@
       data: {}
       target:
         entity_id: scene.outside_lights_on
-  alias: Outside Lights at Sunset
-- description: ""
+- alias: Outside Lights at Sunrise
+  description: ""
   mode: single
   triggers:
     - trigger: sun
@@ -25,4 +26,61 @@
       data: {}
       target:
         entity_id: scene.outside_lights_off
-  alias: Outside Lights at Sunrise
+- alias: Headboard Switch Light On
+  description: ""
+  mode: single
+  triggers:
+    - trigger: state
+      entity_id:
+        - event.remote_switch_29122_scene_001
+      attribute: event_type
+      to: KeyPressed
+  conditions: []
+  actions:
+    - action: switch.turn_on
+      metadata: {}
+      data: {}
+      target:
+        entity_id: switch.mini_plug_59952
+- alias: Headboard Light Switch Off
+  description: ""
+  mode: single
+  triggers:
+    - trigger: state
+      entity_id:
+        - event.remote_switch_29122_scene_002
+      attribute: event_type
+      to: KeyPressed
+  conditions: []
+  actions:
+    - action: switch.turn_off
+      metadata: {}
+      data: {}
+      target:
+        entity_id: switch.mini_plug_59952
+- alias: Headboard Light Time On
+  description: ""
+  mode: single
+  triggers:
+    - trigger: time
+      at: "20:00:00"
+  conditions: []
+  actions:
+    - action: switch.turn_on
+      metadata: {}
+      data: {}
+      target:
+        entity_id: switch.mini_plug_59952
+- alias: Headboard Light Time Off
+  description: ""
+  mode: single
+  triggers:
+    - trigger: time
+      at: "22:30:00"
+  conditions: []
+  actions:
+    - action: switch.turn_off
+      metadata: {}
+      data: {}
+      target:
+        entity_id: switch.mini_plug_59952
