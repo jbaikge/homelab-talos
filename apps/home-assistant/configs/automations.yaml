@@ -1,0 +1,28 @@
+- description: ""
+  mode: single
+  triggers:
+    - trigger: sun
+      event: sunset
+      offset: 0
+  conditions: []
+  actions:
+    - action: scene.turn_on
+      metadata: {}
+      data: {}
+      target:
+        entity_id: scene.outside_lights_on
+  alias: Outside Lights at Sunset
+- description: ""
+  mode: single
+  triggers:
+    - trigger: sun
+      event: sunrise
+      offset: 0
+  conditions: []
+  actions:
+    - action: scene.turn_on
+      metadata: {}
+      data: {}
+      target:
+        entity_id: scene.outside_lights_off
+  alias: Outside Lights at Sunrise
