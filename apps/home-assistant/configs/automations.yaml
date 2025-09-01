@@ -84,3 +84,24 @@
       data: {}
       target:
         entity_id: switch.mini_plug_59952
+- alias: Notify TV of Person at Front Door
+  description: ""
+  mode: single
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.doorbell_person_detected
+      from: off
+      to: on
+  actions:
+    - action: camera.snapshot
+      target:
+        entity_id: camera.doorbell_low_resolution_channel
+      data:
+        filename: /config/snap.doorbell.jpg
+    - action: notify.google_streamer
+      data:
+        title: Person Detected
+        message: Front Door
+        data:
+          image: /config/snap.doorbell.jpg
