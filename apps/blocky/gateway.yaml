@@ -3,7 +3,7 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: blocky-gateway
-  namespace: gateway
+  namespace: blocky
 spec:
   gatewayClassName: blocky
   addresses:
