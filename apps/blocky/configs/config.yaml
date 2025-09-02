@@ -8,6 +8,8 @@ customDNS:
   customTTL: 5m
   mapping:
     baconvacation.com: 10.100.10.33
+    bandit.lan: 10.100.9.32
+    socks.lan: 10.100.9.33
 blocking:
   denylists:
     ads:
