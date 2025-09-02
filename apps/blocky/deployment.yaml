@@ -1,0 +1,52 @@
+# yaml-language-server: $schema=https://github.com/yannh/kubernetes-json-schema/raw/refs/heads/master/v1.33.0/deployment-apps-v1.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blocky
+  namespace: blocky
+  labels:
+    app: blocky
+spec:
+  replicas: 2
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: blocky
+  template:
+    metadata:
+      labels:
+        app: blocky
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: blocky
+          image: "ghcr.io/0xerr0r/blocky:v0.26.2"
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: true
+            runAsNonRoot: false
+          ports:
+            - containerPort: 53
+              protocol: UDP
+            - containerPort: 53
+              protocol: TCP
+            - containerPort: 4000
+          env:
+            - name: TZ
+              value: "${TIMEZONE}"
+          resources:
+            limits:
+              cpu: 2
+              memory: 512Mi
+            requests:
+              cpu: 500m
+              memory: 256Mi
+          volumeMounts:
+            - name: blockky-config-files
+              mountPath: /app/config.yaml
+              subPath: config.yaml
+      volumes:
+        - name: blocky-config-files
+          configMap:
+            name: blocky-config-files

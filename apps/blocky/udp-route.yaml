@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/gateway.networking.k8s.io/udproute_v1alpha2.json
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: UDPRoute
+metadata:
+  name: blocky-route-udp
+  namespace: blocky
+spec:
+  parentRefs:
+    - name: blocky-gateway
+      namespace: blocky
+      sectionName: gateway-blocky-dns-udp
+  rules:
+    - backendRefs:
+        - name: blocky-service
+          port: 53

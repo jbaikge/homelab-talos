@@ -1,0 +1,37 @@
+upstream:
+  groups:
+    default:
+      - 1.1.1.1
+      - 8.8.8.8
+      - 9.9.9.9
+customDNS:
+  customTTL: 5m
+  mapping:
+    baconvacation.com: 10.100.10.33
+blocking:
+  denylists:
+    ads:
+      - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+  clientGroupsBlock:
+    default:
+      - ads
+    10.100.3.1/24:
+      - ads
+  blockType: zeroIp
+  blockTTL: 1m
+  loading:
+    refreshPeriod: 4h
+    downloads:
+      timeout: 1m
+      writeTimeout: 20s
+      readTimeout: 20s
+      readHeaderTimeout: 20s
+      attempts: 3
+      cooldown: 10s
+    concurrency: 4
+    strategy: blocking
+    maxErrorsPerSource: 5
+ports:
+  dns: 53
+  tls: 853
+  http: 80
