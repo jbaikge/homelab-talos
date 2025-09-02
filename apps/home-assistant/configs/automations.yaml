@@ -1,4 +1,5 @@
-- alias: Outside Lights at Sunset
+- id: 01K46117CFTS4X23TECS5KE88R
+  alias: Outside Lights at Sunset
   description: ""
   mode: single
   triggers:
@@ -12,7 +13,8 @@
       data: {}
       target:
         entity_id: scene.outside_lights_on
-- alias: Outside Lights at Sunrise
+- id: 01K46117CFQV3HJTT7DS83K301
+  alias: Outside Lights at Sunrise
   description: ""
   mode: single
   triggers:
@@ -26,7 +28,8 @@
       data: {}
       target:
         entity_id: scene.outside_lights_off
-- alias: Headboard Light Switch On
+- id: 01K46117CF5KT7CY6408ARBM30
+  alias: Headboard Light Switch On
   description: ""
   mode: single
   triggers:
@@ -42,7 +45,8 @@
       data: {}
       target:
         entity_id: switch.mini_plug_59952
-- alias: Headboard Light Switch Off
+- id: 01K46117CFE170Z294MW11QZAE
+  alias: Headboard Light Switch Off
   description: ""
   mode: single
   triggers:
@@ -58,7 +62,8 @@
       data: {}
       target:
         entity_id: switch.mini_plug_59952
-- alias: Headboard Light Time On
+- id: 01K46117CFAZP9P154W96QT1S9
+  alias: Headboard Light Time On
   description: ""
   mode: single
   triggers:
@@ -71,7 +76,8 @@
       data: {}
       target:
         entity_id: switch.mini_plug_59952
-- alias: Headboard Light Time Off
+- id: 01K46117CF9Y3M1WW4ECCF045C
+  alias: Headboard Light Time Off
   description: ""
   mode: single
   triggers:
@@ -84,7 +90,8 @@
       data: {}
       target:
         entity_id: switch.mini_plug_59952
-- alias: Notify TV of Person at Front Door
+- id: 01K46117CFC7Q3BDJXGS4ZXZKG
+  alias: Notify TV of Person at Front Door
   description: ""
   mode: single
   triggers:
