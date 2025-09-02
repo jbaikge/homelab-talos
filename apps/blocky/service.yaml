@@ -6,7 +6,7 @@ metadata:
   namespace: blocky
 spec:
   type: LoadBalancer
-  clusterIP: "${BLOCKY_GATEWAY_ADDRESS}"
+  loadBalancerIP: "${BLOCKY_GATEWAY_ADDRESS}"
   ports:
     - name: dns-tcp
       port: 53
