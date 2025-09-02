@@ -43,7 +43,7 @@ spec:
               cpu: 500m
               memory: 256Mi
           volumeMounts:
-            - name: blockky-config-files
+            - name: blocky-config-files
               mountPath: /app/config.yaml
               subPath: config.yaml
       volumes:
