@@ -5,9 +5,9 @@ resources:
   - deployment.yaml
   - service.yaml
   # - gateway.yaml
-  - http-route.yaml
-  - tcp-route.yaml
-  - udp-route.yaml
+  # - http-route.yaml
+  # - tcp-route.yaml
+  # - udp-route.yaml
 
 configMapGenerator:
   - name: blocky-config-files
