@@ -5,6 +5,7 @@ metadata:
   name: blocky-service
   namespace: blocky
 spec:
+  type: LoadBalancer
   ports:
     - name: http
       port: 80
