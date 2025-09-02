@@ -35,6 +35,8 @@ spec:
           env:
             - name: TZ
               value: "${TIMEZONE}"
+            - name: BLOCKY_CONFIG_FILE
+              value: /app/config.yaml
           resources:
             limits:
               cpu: 2
