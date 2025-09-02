@@ -33,11 +33,16 @@
   description: ""
   mode: single
   triggers:
-    - trigger: state
-      entity_id:
-        - event.remote_switch_29122_scene_001
-      attribute: event_type
-      to: KeyPressed
+    - device_id: 717656b0febf0d6f1f82cc5180f9faef
+      domain: zwave_js
+      type: event.value_notification.central_scene
+      property: scene
+      property_key: "001"
+      endpoint: 0
+      command_class: 91
+      subtype: Endpoint 0 Scene 001
+      trigger: device
+      value: 0
   conditions: []
   actions:
     - action: switch.turn_on
@@ -50,11 +55,16 @@
   description: ""
   mode: single
   triggers:
-    - trigger: state
-      entity_id:
-        - event.remote_switch_29122_scene_002
-      attribute: event_type
-      to: KeyPressed
+    - device_id: 717656b0febf0d6f1f82cc5180f9faef
+      domain: zwave_js
+      type: event.value_notification.central_scene
+      property: scene
+      property_key: "002"
+      endpoint: 0
+      command_class: 91
+      subtype: Endpoint 0 Scene 002
+      trigger: device
+      value: 0
   conditions: []
   actions:
     - action: switch.turn_off
