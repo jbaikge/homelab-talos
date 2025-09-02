@@ -5,7 +5,7 @@ metadata:
   name: blocky-gateway
   namespace: blocky
 spec:
-  gatewayClassName: blocky
+  gatewayClassName: cilium
   addresses:
     - type: IPAddress
       value: "${BLOCKY_GATEWAY_ADDRESS}"
