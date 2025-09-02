@@ -6,6 +6,7 @@ metadata:
   namespace: blocky
 spec:
   type: LoadBalancer
+  clusterIP: "${BLOCKY_GATEWAY_ADDRESS}"
   ports:
     - name: http
       port: 80
