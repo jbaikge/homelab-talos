@@ -9,3 +9,4 @@ data:
   CILIUM_ADDRESS_STOP: "10.100.10.243"
   CILIUM_HTTP_GATEWAY_ADDRESS: "10.100.10.33"
   LETS_ENCRYPT_SERVER: "https://acme-v02.api.letsencrypt.org/directory"
+  BLOCKY_GATEWAY_ADDRESS: "10.100.10.34"
