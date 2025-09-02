@@ -8,9 +8,12 @@ spec:
   ports:
     - name: http
       port: 80
+      protocol: TCP
     - name: dns-tcp
       port: 53
+      protocol: TCP
     - name: dns-udp
       port: 53
+      protocol: UDP
   selector:
     app: blocky
