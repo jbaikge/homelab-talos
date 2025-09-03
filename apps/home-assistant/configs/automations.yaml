@@ -122,3 +122,25 @@
         message: Front Door
         data:
           image: /config/snap.doorbell.jpg
+- id: 01K48HM9SCAWERE815C2B16JX4
+  alias: Notify TV of Vehicle on Driveway
+  description: ""
+  mode: single
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.driveway_vehicle_detected
+      from: "off"
+      to: "on"
+  actions:
+    - action: camera.snapshot
+      target:
+        entity_id: camera.driveway_low_resolution_channel
+      data:
+        filename: /config/snap.driveway.jpg
+    - action: notify.google_streamer
+      data:
+        title: Vehicle Detected
+        message: Driveway
+        data:
+          image: /config/snap.driveway.jpg
