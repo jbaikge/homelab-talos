@@ -144,3 +144,101 @@
         message: Driveway
         data:
           image: /config/snap.driveway.jpg
+- id: 01K48W984P7E5E8FEZS9PFHCY5
+  alias: Switch On Basement Lights
+  description: ""
+  mode: single
+  triggers:
+    - device_id: d5690c3114d77b70fa4f00b4602611ad
+      domain: zwave_js
+      type: event.value_notification.central_scene
+      property: scene
+      property_key: "001"
+      endpoint: 0
+      command_class: 91
+      subtype: Endpoint 0 Scene 001
+      trigger: device
+      value: 3
+    - device_id: e6c30c92fb3c926b91d1241750125a08
+      domain: zwave_js
+      type: event.value_notification.central_scene
+      property: scene
+      property_key: "001"
+      endpoint: 0
+      command_class: 91
+      subtype: Endpoint 0 Scene 001
+      trigger: device
+      value: 3
+    - device_id: 45ac941ff59d752fc3e82409bd6f5c56
+      domain: zwave_js
+      type: event.value_notification.central_scene
+      property: scene
+      property_key: "001"
+      endpoint: 0
+      command_class: 91
+      subtype: Endpoint 0 Scene 001
+      trigger: device
+      value: 3
+  conditions: []
+  actions:
+    - type: turn_on
+      device_id: d5690c3114d77b70fa4f00b4602611ad
+      entity_id: 044f983c87b6d1af7afbf61083e1ac6a
+      domain: switch
+    - type: turn_on
+      device_id: e6c30c92fb3c926b91d1241750125a08
+      entity_id: fdfa070910f3b753aed371b868f80a83
+      domain: switch
+    - type: turn_on
+      device_id: 45ac941ff59d752fc3e82409bd6f5c56
+      entity_id: da179915a7717f0c58b6072b8a15778d
+      domain: switch
+- id: 01K48W984PFTJ8YHB769QB3CG8
+  alias: Switch Off Basement Lights
+  description: ""
+  mode: single
+  triggers:
+    - device_id: d5690c3114d77b70fa4f00b4602611ad
+      domain: zwave_js
+      type: event.value_notification.central_scene
+      property: scene
+      property_key: "002"
+      endpoint: 0
+      command_class: 91
+      subtype: Endpoint 0 Scene 002
+      trigger: device
+      value: 3
+    - device_id: e6c30c92fb3c926b91d1241750125a08
+      domain: zwave_js
+      type: event.value_notification.central_scene
+      property: scene
+      property_key: "002"
+      endpoint: 0
+      command_class: 91
+      subtype: Endpoint 0 Scene 002
+      trigger: device
+      value: 3
+    - device_id: 45ac941ff59d752fc3e82409bd6f5c56
+      domain: zwave_js
+      type: event.value_notification.central_scene
+      property: scene
+      property_key: "002"
+      endpoint: 0
+      command_class: 91
+      subtype: Endpoint 0 Scene 002
+      trigger: device
+      value: 3
+  conditions: []
+  actions:
+    - type: turn_off
+      device_id: d5690c3114d77b70fa4f00b4602611ad
+      entity_id: 044f983c87b6d1af7afbf61083e1ac6a
+      domain: switch
+    - type: turn_off
+      device_id: e6c30c92fb3c926b91d1241750125a08
+      entity_id: fdfa070910f3b753aed371b868f80a83
+      domain: switch
+    - type: turn_off
+      device_id: 45ac941ff59d752fc3e82409bd6f5c56
+      entity_id: da179915a7717f0c58b6072b8a15778d
+      domain: switch
