@@ -1,14 +1,14 @@
 - kubernetes:
     cluster:
       show: true
-      cpu: true
-      memory: true
+      cpu: false
+      memory: false
       showLabel: true
       label: "hardwood"
     nodes:
       show: true
-      cpu: true
-      memory: true
+      cpu: false
+      memory: false
       showLabel: true
 - resources:
     backend: resources
