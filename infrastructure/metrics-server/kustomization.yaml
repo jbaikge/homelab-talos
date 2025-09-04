@@ -1,5 +1,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - helm-repository.yaml
-  - helm-release.yaml
+  - service-account.yaml
+  - cluster-role-reader.yaml
+  - cluster-role-server.yaml
+  - role-binding.yaml
+  - cluster-role-binding-delegator.yaml
+  - cluster-role-binding-server.yaml
+  - service.yaml
+  - deployment.yaml
+  - api-service.yaml
