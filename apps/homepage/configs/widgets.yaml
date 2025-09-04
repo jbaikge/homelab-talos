@@ -10,12 +10,13 @@
       cpu: false
       memory: false
       showLabel: true
-- resources:
-    backend: resources
-    expanded: true
-    cpu: true
-    memory: true
-    network: default
+# already get resource usage from cluster above
+# - resources:
+#     backend: resources
+#     expanded: true
+#     cpu: true
+#     memory: true
+#     network: default
 - search:
     provider: duckduckgo
     target: self
