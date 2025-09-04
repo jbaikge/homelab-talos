@@ -16,4 +16,5 @@ spec:
         namespace: kube-system
       interval: 12h
   values:
-    # Starting with defaults
+    apiService:
+      insecureSkipTLSVerify: true
