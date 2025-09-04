@@ -23,6 +23,11 @@ spec:
         - name: linkding
           image: "ghcr.io/sissbruecker/linkding:1.42.0-plus"
           imagePullPolicy: IfNotPresent
+          env:
+            - name: LD_SUPERUSER_NAME
+              value: admin
+            - name: LD_SUPERUSER_PASSWORD
+              value: password
           ports:
             - containerPort: 9090
               name: http
