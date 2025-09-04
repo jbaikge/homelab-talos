@@ -4,6 +4,17 @@ kind: HTTPRoute
 metadata:
   name: home-assistant-route
   namespace: home-assistant
+  annotations:
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: Bookmark manager
+    gethomepage.dev/group: Web
+    gethomepage.dev/icon: sh-linkding.svg
+    gethomepage.dev/name: Linkding
+    gethomepage.dev/widget.type: homeassistant
+    gethomepage.dev/widget.key: "${SECRET_HOME_ASSISTANT_TOKEN}"
+    gethomepage.dev/pod-selector: ""
+    gethomepage.dev/weight: "" # optional
+    gethomepage.dev/instance: "" # optional
 spec:
   parentRefs:
     - name: cilium-gateway
