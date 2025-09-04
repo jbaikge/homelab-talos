@@ -5,4 +5,4 @@ resources:
   - cert-manager
   - gateway
   - democratic-csi
-  - metrics-server
+  # - metrics-server
