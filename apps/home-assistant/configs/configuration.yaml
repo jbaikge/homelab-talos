@@ -1,6 +1,10 @@
 # Secret test: ${SECRET_HA_TEST}
 default_config:
 
+api:
+
+websocket_api:
+
 homeassistant:
   allowlist_external_dirs:
     - "/config"
