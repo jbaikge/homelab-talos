@@ -21,6 +21,10 @@ pages:
             icon: sh:linkding
             url: https://bookmarks.baconvacation.com
             check-url: http://linkding.linkding.svc.cluster.local:9090
+          - title: ZWave
+            icon: sh:zwave-js-ui
+            url: https://zwave.baconvacation.com
+            check-url: http://zwave-service.zwave.svc.cluster.local:8091
     columns:
       - size: small
         widgets:
