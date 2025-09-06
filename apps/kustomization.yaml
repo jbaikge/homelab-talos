@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - blocky
   - homepage
+  - glance
   - cloudflared
   - whoami
   - kubernetes-dashboard
