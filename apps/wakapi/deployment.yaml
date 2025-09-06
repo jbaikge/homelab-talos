@@ -25,6 +25,8 @@ spec:
           env:
             - name: WAKAPI_PASSWORD_SALT
               value: "${SECRET_WAKAPI_PASSWORD_SALT}"
+            - name: WAKAPI_LISTEN_IPV4
+              value: "0.0.0.0"
             - name: WAKAPI_PUBLIC_URL
               value: "https://waka.${SECRET_DOMAIN}"
           ports:
