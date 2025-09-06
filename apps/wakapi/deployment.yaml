@@ -22,6 +22,10 @@ spec:
       containers:
         - name: wakapi
           image: "ghcr.io/muety/wakapi:2.15.0"
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
           env:
             - name: WAKAPI_PASSWORD_SALT
               value: "${SECRET_WAKAPI_PASSWORD_SALT}"
