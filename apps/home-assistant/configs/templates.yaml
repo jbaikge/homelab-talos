@@ -1,0 +1,19 @@
+- trigger:
+    - platform: time
+      at: "15:35:00"
+  action:
+    - service: calendar.get_events
+      data:
+        duration:
+          hours: 96
+      target:
+        entity_id: calendar.jbarkee
+      response_variable: agenda
+  sensor:
+    - name: Jake & Bre Calendar
+      state: "{{ now() }}"
+      attributes:
+        events: |
+          {% for event in agenda["calendar.jbarkee"]["events"] %}
+            {{- (event.start|as_datetime|as_local).strftime("%H:%M") }}: {{ event.summary }}<br>
+          {% endfor %}

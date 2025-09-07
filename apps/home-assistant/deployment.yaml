@@ -116,3 +116,6 @@ spec:
             - name: home-assistant-config-files
               mountPath: /config/scenes.yaml
               subPath: scenes.yaml
+            - name: home-assistant-config-files
+              mountPath: /config/templates.yaml
+              subPath: templates.yaml
