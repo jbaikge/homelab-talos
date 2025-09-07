@@ -19,6 +19,13 @@ spec:
       labels:
         app: wakapi
     spec:
+      initContainers:
+      - name: init-permissions
+        image: busybox
+        command: ["sh", "-c", "chown 1000:1000 /data && chmod 750 /data"]
+        volumeMounts:
+        - mountPath: /data
+          name: wakapi-data
       containers:
         - name: wakapi
           image: "ghcr.io/muety/wakapi:2.15.0"
