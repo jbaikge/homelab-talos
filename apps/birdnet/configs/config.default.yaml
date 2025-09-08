@@ -1,0 +1,267 @@
+# BirdNET-Go configuration
+# Paths support environment variables such as $HOME and %appdata%
+
+debug: false # Enable debug messages for troubleshooting
+
+# Main application settings
+main:
+  name: BirdNET-Go # Name of this node, used to identify the source of notes
+  timeas24h: true # true for 24-hour time format, false for 12-hour time format
+  log:
+    enabled: false # Enable main application logging
+    path: logs/birdnet.log # Path to log file
+    rotation: daily # Log rotation type: daily, weekly, or size
+    maxsize: 10485760 # Maximum log size in bytes for size rotation (10MB)
+    rotationday: Sunday # Day of the week for weekly rotation
+
+# BirdNET model specific settings
+birdnet:
+  debug: false # Enable debug mode for BirdNET functionality
+  sensitivity: 1.0 # Sigmoid sensitivity, 0.1 to 1.5
+  threshold: 0.8 # Threshold for prediction confidence to report, 0.0 to 1.0
+  overlap: 0.0 # Overlap between chunks, 0.0 to 2.9
+  latitude: 60.1699 # Latitude of recording location for prediction filtering
+  longitude: 24.9384 # Longitude of recording location for prediction filtering
+  threads: 0 # Number of CPU threads to use (0 = use all available, automatically optimized for P-cores if detected)
+  locale: en-uk # Language to use for labels
+  modelpath: "" # Path to external model file (empty for embedded)
+  labelpath: "" # Path to external label file (empty for embedded)
+  usexnnpack: true # Use XNNPACK delegate for inference acceleration
+  rangefilter:
+    debug: false # Enable debug mode for range filter
+    model: "" # Range filter model to use. "" (default) uses V2, "legacy" uses V1.
+    threshold:
+      0.01 # Range filter species occurrence threshold (0.0-1.0)
+      # Default (0.01) is recommended for most users
+      # Conservative values (0.05-0.1): Fewer species, higher occurrence probability
+      # Strict values (0.1-0.3): Only species with strong occurrence probability
+      # Very strict values (0.5+): Only the most common species for your area
+
+# Realtime processing settings
+realtime:
+  interval: 15 # Minimum interval between repeating detections in seconds
+  processingtime: false # Report processing time for each prediction
+
+  # Audio settings
+  audio:
+    source: "" # Audio source to use for analysis
+    ffmpegpath: "" # Path to ffmpeg (runtime value)
+    soxpath: "" # Path to sox (runtime value)
+    streamtransport: auto # Preferred transport for audio streaming: auto, sse, or ws
+    soundlevel:
+      enabled: false # Enable sound level monitoring in 1/3rd octave bands
+      interval: 10 # Measurement interval in seconds (default: 10)
+    export:
+      debug: false # Enable audio export debug
+      enabled: false # Export audio clips containing identified bird calls
+      path: clips/ # Path to audio clip export directory
+      type: wav # Audio file type: wav, mp3, or flac
+      bitrate: 192k # Bitrate for audio export
+      retention:
+        debug: false # Enable retention debug
+        policy: none # Retention policy: none, age, or usage
+        maxage: 30d # Maximum age of audio clips to keep
+        maxusage: 85% # Maximum disk usage percentage before cleanup
+        minclips: 5 # Minimum number of clips per species to keep
+    equalizer:
+      enabled: false # Enable equalizer filters
+      filters:
+        - type: LowPass # Filter type: LowPass, HighPass, BandPass, etc.
+          frequency: 10000 # Filter frequency in Hz
+          q: 0.7 # Filter Q factor
+          gain: 0 # Filter gain (only for certain types)
+          width: 0 # Filter width (only for BandPass and BandReject)
+          passes: 1 # Filter passes for added attenuation or gain
+
+  # Web dashboard settings
+  dashboard:
+    thumbnails:
+      debug: false # Enable debug mode for thumbnails
+      summary: true # Show thumbnails on summary table
+      recent: true # Show thumbnails on recent table
+    summarylimit: 20 # Limit for the number of species shown in the summary table
+
+  # Dynamic threshold adjustment
+  dynamicthreshold:
+    enabled: false # Enable dynamic threshold adjustment
+    debug: false # Enable debug mode for dynamic threshold
+    trigger: 0.5 # Trigger threshold for dynamic adjustment
+    min: 0.3 # Minimum threshold for dynamic adjustment
+    validhours: 24 # Number of hours to consider for dynamic threshold
+
+  # OBS chat log settings
+  log:
+    enabled: false # Enable OBS chat log
+    path: birdnet.txt # Path to OBS chat log
+
+  # BirdWeather API integration
+  birdweather:
+    enabled: false # Enable BirdWeather uploads
+    debug: false # Enable debug mode for BirdWeather API
+    id: "00000" # BirdWeather ID / Token
+    threshold: 0.9 # Threshold of prediction confidence for uploads
+    locationaccuracy: 10 # Accuracy of location in meters
+    retrysettings:
+      enabled: true # Enable retry mechanism
+      maxretries: 5 # Maximum number of retry attempts
+      initialdelay: 5 # Initial delay before first retry in seconds
+      maxdelay: 300 # Maximum delay between retries in seconds
+      backoffmultiplier: 2.0 # Multiplier for exponential backoff
+
+  # Weather integration settings
+  weather:
+    provider: "yrno" # Weather provider: none, yrno, or openweather
+    pollinterval: 30 # Weather data polling interval in minutes
+    debug: false # Enable debug mode for weather integration
+    openweather:
+      enabled: false # Enable OpenWeather integration (legacy setting, use 'provider' above)
+      apikey: "" # OpenWeather API key
+      endpoint: "https://api.openweathermap.org/data/2.5/weather" # OpenWeather API endpoint
+      units: "metric" # Units of measurement: standard, metric, or imperial
+      language: "en" # Language code for the response
+
+  # Privacy and filtering settings
+  privacyfilter:
+    debug: false # Enable debug mode for privacy filter
+    enabled: false # Enable privacy filter
+    confidence: 0.8 # Confidence threshold for human detection
+
+  dogbarkfilter:
+    debug: false # Enable debug mode for dog bark filter
+    enabled: false # Enable dog bark filter to prevent misdetections during dog barking
+    confidence: 0.8 # Confidence threshold for dog bark detection
+    remember: 60 # How long to remember barks for filtering (in seconds)
+    species: ["Eurasian Eagle-Owl", "Hooded Crow"] # Species prone to dog bark confusion
+
+  # RTSP streaming settings
+  rtsp:
+    transport: "tcp" # RTSP Transport Protocol: tcp or udp
+    urls: [] # RTSP stream URLs
+
+  # MQTT integration
+  mqtt:
+    enabled: false # Enable MQTT
+    broker: "localhost:1883" # MQTT broker URL (e.g., mqtt://host:port or mqtts://host:port)
+    topic: "birdnet/detections" # MQTT topic
+    username: "" # MQTT username
+    password: "" # MQTT password
+    retain: false # Retain messages (useful for Home Assistant)
+    retrysettings:
+      enabled: true # Enable retry mechanism
+      maxretries: 5 # Maximum number of retry attempts
+      initialdelay: 5 # Initial delay before first retry in seconds
+      maxdelay: 300 # Maximum delay between retries in seconds
+      backoffmultiplier: 2.0 # Multiplier for exponential backoff
+
+  # Telemetry settings
+  telemetry:
+    enabled: false # Enable Prometheus compatible telemetry endpoint
+    listen: "localhost:9090" # IP address and port to listen on (e.g., 0.0.0.0:9090)
+
+  # Species-specific settings
+  species:
+    include: [] # Always include these species, bypassing range/occurrence filters
+    exclude: [] # Always exclude these species, regardless of confidence
+    config: # Per-species configuration overrides
+      "European Robin": # Use the exact species name from BirdNET labels
+        threshold: 0.75 # Custom confidence threshold for this species
+        actions: # List of actions to execute on detection (currently only one action per species supported)
+          - type: ExecuteCommand # Action type (only ExecuteCommand supported currently)
+            command: "/path/to/notify_script.sh" # Full path to the script/command
+            parameters: ["CommonName", "Confidence"] # Parameters to pass to the command
+            executedefaults: true # true: run default actions (DB, MQTT, etc.) AND this command. false: run ONLY this command.
+
+  # Species tracking settings (NEW)
+  speciesTracking:
+    enabled: true # Enable tracking of new species discoveries (default: true)
+    newSpeciesWindowDays: 7 # Days to show "New Species" badge after first detection (default: 7)
+    syncIntervalMinutes: 60 # How often to sync tracking data with database in minutes (default: 60)
+
+    # Yearly tracking - tracks first arrivals each calendar year
+    yearlyTracking:
+      enabled: true # Enable yearly "New This Year" tracking (default: true)
+      resetMonth: 1 # Month when yearly tracking resets (1-12, default: 1 for January)
+      resetDay: 1 # Day of month when yearly tracking resets (1-31, default: 1)
+      windowDays: 7 # Days to show "New This Year" badge after first yearly detection (default: 7)
+
+    # Seasonal tracking - tracks first arrivals each season
+    seasonalTracking:
+      enabled: true # Enable seasonal "New This Season" tracking (default: true)
+      windowDays: 7 # Days to show "New This Season" badge after first seasonal detection (default: 7)
+      # Custom season definitions (optional - auto-adjusts for hemisphere if not specified)
+      seasons:
+        spring:
+          startMonth: 3 # March (Northern Hemisphere default)
+          startDay: 20 # Spring equinox
+        summer:
+          startMonth: 6 # June
+          startDay: 21 # Summer solstice
+        fall:
+          startMonth: 9 # September
+          startDay: 22 # Fall equinox
+        winter:
+          startMonth: 12 # December
+          startDay: 21 # Winter solstice
+
+# Web server settings
+webserver:
+  debug: false # Enable debug mode for web server
+  enabled: true # Enable web server
+  port: "8080" # Port for web server
+  log:
+    enabled: false # Enable web server logging
+    path: logs/webserver.log # Path to log file
+    rotation: daily # Log rotation type: daily, weekly, or size
+    maxsize: 10485760 # Maximum log size in bytes for size rotation (10MB)
+    rotationday: Sunday # Day of the week for weekly rotation
+
+# Security settings
+security:
+  debug: false # Enable debug mode for security features
+  host: "" # Primary hostname used for TLS certificates and OAuth redirect URLs
+  autotls: false # Enable automatic TLS certificate management using Let's Encrypt
+  redirecttohttps: true # Redirect HTTP to HTTPS
+  allowsubnetbypass:
+    enabled: false # Enable subnet bypass for authentication
+    subnet: "192.168.1.0/24" # Subnet to bypass authentication
+  basicauth:
+    enabled: false # Enable password authentication
+    password: "" # Password for admin interface
+    clientid: "" # Client ID for OAuth2
+    clientsecret: "" # Client secret for OAuth2
+    redirecturi: "" # Redirect URI for OAuth2
+    authcodeexp: 10m # Duration for authorization code
+    accesstokenexp: 1h # Duration for access token
+  googleauth:
+    enabled: false # Enable Google OAuth2
+    clientid: "" # Google client ID
+    clientsecret: "" # Google client secret
+    redirecturi: "" # Google redirect URI
+    userid: "" # Valid Google user ID
+  githubauth:
+    enabled: false # Enable GitHub OAuth2
+    clientid: "" # GitHub client ID
+    clientsecret: "" # GitHub client secret
+    redirecturi: "" # GitHub redirect URI
+    userid: "" # Valid GitHub user ID
+  sessionsecret: "" # Secret for session cookie
+
+# Output settings
+# Error tracking and telemetry (optional)
+sentry:
+  enabled: false # true to enable privacy-first error tracking (opt-in)
+
+output:
+  # SQLite database output settings
+  sqlite:
+    enabled: true # Enable SQLite output
+    path: birdnet.db # Path to SQLite database
+
+  # MySQL database output settings
+  mysql:
+    enabled: false # Enable MySQL output
+    username: birdnet # MySQL database username
+    password: secret # MySQL database user password
+    database: birdnet # MySQL database name
+    host: localhost # MySQL database host
+    port: 3306 # MySQL database port
