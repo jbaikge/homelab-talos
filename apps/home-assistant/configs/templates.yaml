@@ -1,19 +1,21 @@
-- trigger:
-    - platform: time
-      at: "15:35:00"
+- id: 01K4JWMHXMSVP5T4Z28KTC9BJG
+  trigger:
+    - platform: time_pattern
+      at: "/1"
   action:
     - service: calendar.get_events
       data:
         duration:
-          hours: 96
+          start_date_time: "{{ now().strftime('%Y-%m-%d 00:00:00') }}"
+          end_date_time: "{{ (now() + timedelta(days=7)).strftime('%Y-%m-%d 00:00:00') }}"
       target:
         entity_id: calendar.jbarkee
       response_variable: agenda
   sensor:
     - name: Jake & Bre Calendar
-      state: "{{ now() }}"
+      state: "{{ agenda['calendar.jbarkee'].events | join('|', attribute='start') }}"
       attributes:
         events: |
-          {% for event in agenda["calendar.jbarkee"]["events"] %}
+          {% for event in agenda["calendar.jbarkee"].events %}
             {{- (event.start|as_datetime|as_local).strftime("%H:%M") }}: {{ event.summary }}<br>
           {% endfor %}
