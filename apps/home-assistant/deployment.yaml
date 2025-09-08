@@ -111,6 +111,9 @@ spec:
               mountPath: /config/automations.yaml
               subPath: automations.yaml
             - name: home-assistant-config-files
+              mountPath: /config/www/calendar-card-pro.js
+              subPath: calendar-card-pro.js
+            - name: home-assistant-config-files
               mountPath: /config/configuration.yaml
               subPath: configuration.yaml
             - name: home-assistant-config-files
