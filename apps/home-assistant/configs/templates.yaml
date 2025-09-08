@@ -20,3 +20,24 @@
           {% for event in agenda["calendar.jbarkee"].events %}
             {{- (event.start|as_datetime|as_local).strftime("%H:%M") }}: {{ event.summary }}<br>
           {% endfor %}
+# Google AI generated:
+- trigger:
+    - platform: time_pattern
+      minutes: 1
+  action:
+    - service: calendar.get_events
+      data:
+        duration:
+          days: 7 # Get events for the next 7 days
+        target:
+          entity_id: calendar.jbarkee
+        response_variable: upcoming_events
+  sensor:
+    - name: My Calendar Upcoming Events
+      state: "{{ now() }}" # State can be anything, like current timestamp
+      attributes:
+        events: |
+          {% for event in upcoming_events['calendar.jbarkee']['events'] %}
+          - Summary: {{ event.summary }}
+            Start: {{ (event.start|as_datetime|as_local).strftime("%Y-%m-%d %H:%M") }}
+          {% endfor %}
