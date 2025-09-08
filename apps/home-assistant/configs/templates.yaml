@@ -1,7 +1,7 @@
 - unique_id: 01K4JWMHXMSVP5T4Z28KTC9BJG
   trigger:
     - platform: time_pattern
-      at: "/1"
+      minutes: 1
   action:
     - service: calendar.get_events
       data:
