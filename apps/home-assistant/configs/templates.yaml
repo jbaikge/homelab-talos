@@ -16,7 +16,7 @@
       name: Jake & Bre Calendar
       state: "{{ agenda['calendar.jbarkee'].events | join('|', attribute='start') }}"
       attributes:
-        events: |
+        agenda: |
           {% for event in agenda["calendar.jbarkee"].events %}
             {{- (event.start|as_datetime|as_local).strftime("%H:%M") }}: {{ event.summary }}<br>
           {% endfor %}
