@@ -1,4 +1,4 @@
-- id: 01K4MER28AWW5B8YNWQKJQZ5AZ
+- unique_id: 01K4MER28AWW5B8YNWQKJQZ5AZ
   name: "Sump Pumps Per Hour"
   platform: statistics
   entity_id: binary_sensor.sumppump_pipe
