@@ -19,6 +19,7 @@ configMapGenerator:
       - configs/automations.yaml
       - configs/configuration.yaml
       - configs/scenes.yaml
+      - configs/sensors.yaml
       - configs/templates.yaml
   - name: home-assistant-config-env
     namespace: home-assistant

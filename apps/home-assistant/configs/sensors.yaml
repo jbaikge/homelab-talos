@@ -1,0 +1,9 @@
+- id: 01K4MER28AWW5B8YNWQKJQZ5AZ
+  name: "Sump Pumps Per Hour"
+  platform: statistics
+  entity_id: binary_sensor.sumppump_pipe
+  state_characteristic: count_on
+  max_age:
+    hours: 1
+  precision: 1
+  keep_last_sample: true
