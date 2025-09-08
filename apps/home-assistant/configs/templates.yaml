@@ -12,7 +12,8 @@
         entity_id: calendar.jbarkee
       response_variable: agenda
   sensor:
-    - name: Jake & Bre Calendar
+    - unique_id: 01K4MER28A1W84EM3X2VEJH9JX
+      name: Jake & Bre Calendar
       state: "{{ agenda['calendar.jbarkee'].events | join('|', attribute='start') }}"
       attributes:
         events: |
