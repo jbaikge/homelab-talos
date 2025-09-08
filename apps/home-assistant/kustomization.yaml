@@ -21,7 +21,6 @@ configMapGenerator:
       - configs/scenes.yaml
       - configs/sensors.yaml
       - configs/templates.yaml
-      - configs/calendar-card-pro.js
   - name: home-assistant-config-env
     namespace: home-assistant
     literals:
