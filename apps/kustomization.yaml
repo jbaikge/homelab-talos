@@ -12,3 +12,4 @@ resources:
   - zwave-js-ui
   - linkding
   - wakapi
+  - birdnet

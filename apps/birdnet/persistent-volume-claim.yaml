@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://github.com/yannh/kubernetes-json-schema/raw/refs/heads/master/v1.33.0/persistentvolumeclaim-v1.json
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: birdnet-data
+  namespace: birdnet
+  annotations:
+    volume.beta.kubernetes.io/storage-class: truenas-iscsi
+spec:
+  storageClassName: truenas-iscsi
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 8Gi

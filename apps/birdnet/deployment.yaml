@@ -1,0 +1,76 @@
+# yaml-language-server: $schema=https://github.com/yannh/kubernetes-json-schema/raw/refs/heads/master/v1.33.0/deployment-apps-v1.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: birdnet
+  namespace: birdnet
+  labels:
+    app: birdnet
+spec:
+  revisionHistoryLimit: 3
+  replicas: 1
+  selector:
+    matchLabels:
+      app: birdnet
+  template:
+    metadata:
+      labels:
+        app: birdnet
+    spec:
+      initContainers:
+      - name: init-permissions
+        image: busybox
+        command: ["sh", "-c", "chown 1000:1000 /data && chmod 750 /data"]
+        volumeMounts:
+        - mountPath: /data
+          name: birdnet-data
+      containers:
+        - name: birdnet
+          image: "ghcr.io/tphakala/birdnet-go:nightly-20250315"
+          env:
+            - name: TZ
+              value: "${TIMEZONE}"
+            - name: BIRDNET_UID
+              value: "1000"
+            - name: BIRDNET_GID
+              value: "1000"
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: "/"
+              port: http
+            initialDelaySeconds: 15
+            failureThreshold: 3
+            timeoutSeconds: 1
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: "/"
+              port: http
+            initialDelaySeconds: 15
+            failureThreshold: 3
+            timeoutSeconds: 1
+            periodSeconds: 10
+          resources:
+            limits:
+              cpu: 2
+              memory: 2Gi
+            requests:
+              cpu: 500m
+              memory: 256Mi
+          volumeMounts:
+            - mountPath: /config/config.yaml
+              name: birdnet-config
+              subPath: config.yaml
+            - mountPath: /data
+              name: birdnet-data
+      volumes:
+        - name: birdnet-config
+          configMap:
+            name: birdnet-config
+        - name: birdnet-data
+          persistentVolumeClaim:
+            claimName: birdnet-data
