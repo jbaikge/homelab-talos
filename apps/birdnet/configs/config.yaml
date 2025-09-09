@@ -9,3 +9,6 @@ realtime:
       - "${SECRET_RTSP_1}" # Doorbell
       # - "${SECRET_RTSP_2}" # Garage
       # - "${SECRET_RTSP_3}" # Rear
+  dashboard:
+    thumbnails:
+      summary: true
