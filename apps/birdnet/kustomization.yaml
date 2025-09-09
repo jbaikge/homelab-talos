@@ -4,9 +4,9 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - persistent-volume-claim.yaml
-  - deployment.yaml
-  - service.yaml
-  - http-route.yaml
+  # - deployment.yaml
+  # - service.yaml
+  # - http-route.yaml
 
 configMapGenerator:
   - name: birdnet-config
