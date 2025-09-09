@@ -1,3 +1,11 @@
 birdnet:
   longitude: ${SECRET_LONGITUDE}
   latitude: ${SECRET_LATITUDE}
+realtime:
+  rtsp:
+    transport: "tcp"
+    urls:
+      - "${SECRET_RTSP_0}" # Driveway
+      - "${SECRET_RTSP_1}" # Doorbell
+      # - "${SECRET_RTSP_2}" # Garage
+      # - "${SECRET_RTSP_3}" # Rear
