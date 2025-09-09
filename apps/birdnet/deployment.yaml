@@ -12,6 +12,8 @@ spec:
   selector:
     matchLabels:
       app: birdnet
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
