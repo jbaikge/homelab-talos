@@ -13,6 +13,10 @@ pages:
       - type: monitor
         cache: 1m
         sites:
+          - title: BirdNET
+            icon: sh:birdnet-analyzer
+            url: https://birdnet.baconvacation.com
+            check-url: http://birdnet.birdnet.svc.cluster.local:8080
           - title: Home Assistant
             icon: sh:home-assistant
             url: https://home.baconvacation.com
