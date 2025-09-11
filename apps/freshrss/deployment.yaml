@@ -40,17 +40,17 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: "/"
+              path: "/i/"
               port: http
-            initialDelaySeconds: 15
+            initialDelaySeconds: 5
             failureThreshold: 3
             timeoutSeconds: 1
             periodSeconds: 10
           readinessProbe:
             httpGet:
-              path: "/"
+              path: "/i/"
               port: http
-            initialDelaySeconds: 15
+            initialDelaySeconds: 5
             failureThreshold: 3
             timeoutSeconds: 1
             periodSeconds: 10
