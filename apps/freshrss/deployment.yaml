@@ -1,0 +1,70 @@
+# yaml-language-server: $schema=https://github.com/yannh/kubernetes-json-schema/raw/refs/heads/master/v1.33.0/deployment-apps-v1.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: freshrss
+  namespace: freshrss
+  labels:
+    app: freshrss
+spec:
+  revisionHistoryLimit: 3
+  replicas: 1
+  selector:
+    matchLabels:
+      app: freshrss
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: freshrss
+    spec:
+      initContainers:
+      - name: init-permissions
+        image: busybox
+        command: ["sh", "-c", "chown 33:33 /data && chmod 750 /data"]
+        volumeMounts:
+        - mountPath: /data
+          name: freshrss-data
+      containers:
+        - name: freshrss
+          image: "docker.io/freshrss/freshrss:1.27.0"
+          env:
+            - name: TZ
+              value: "${TIMEZONE}"
+            - name: CRON_MIN
+              value: "7,37"
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: "/"
+              port: http
+            initialDelaySeconds: 15
+            failureThreshold: 3
+            timeoutSeconds: 1
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: "/"
+              port: http
+            initialDelaySeconds: 15
+            failureThreshold: 3
+            timeoutSeconds: 1
+            periodSeconds: 10
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 512Mi
+            requests:
+              cpu: 500m
+              memory: 128Mi
+          volumeMounts:
+            - mountPath: /var/www/FreshRSS/data
+              name: freshrss-data
+      volumes:
+        - name: freshrss-data
+          persistentVolumeClaim:
+            claimName: freshrss-data
