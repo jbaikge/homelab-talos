@@ -35,7 +35,7 @@ spec:
             - name: CRON_MIN
               value: "7,37"
           ports:
-            - containerPort: 8080
+            - containerPort: 80
               name: http
               protocol: TCP
           # livenessProbe:
