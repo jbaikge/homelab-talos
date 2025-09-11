@@ -64,15 +64,15 @@ spec:
               cpu: 500m
               memory: 256Mi
           volumeMounts:
-            - mountPath: /config/config.yaml
-              name: birdnet-config
-              subPath: config.yaml
+            # - mountPath: /config/config.yaml
+            #   name: birdnet-config
+            #   subPath: config.yaml
             - mountPath: /data
               name: birdnet-data
       volumes:
-        - name: birdnet-config
-          configMap:
-            name: birdnet-config
+        # - name: birdnet-config
+        #   configMap:
+        #     name: birdnet-config
         - name: birdnet-data
           persistentVolumeClaim:
             claimName: birdnet-data
