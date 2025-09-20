@@ -46,7 +46,7 @@ data "talos_machine_configuration" "controlplane" {
     file("${path.module}/files/cluster-subnets.yaml"),
     templatefile("${path.module}/files/cluster-cni.yaml", {
       cilium_install = file("${path.module}/files/cilium-install.yaml")
-      cilium_values  = file("${path.module}/../infrastructure/controllers/cilium-config-map.yaml")
+      cilium_values  = file("${path.module}/../infrastructure/cilium/config-map.yaml")
     }),
     templatefile("${path.module}/files/cluster-common.yaml", {
       hostname      = each.key
