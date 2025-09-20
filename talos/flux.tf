@@ -1,6 +1,13 @@
 resource "kubernetes_namespace" "flux" {
   metadata {
     name = var.flux_namespace
+    labels = {
+      "kustomize.toolkit.fluxcd.io/name"      = "flux-system"
+      "kustomize.toolkit.fluxcd.io/namespace" = "flux-system"
+      "app.kubernetes.io/instance"            = "flux-system"
+      "app.kubernetes.io/part-of"             = "flux"
+      "app.kubernetes.io/version"             = "v2.6.4"
+    }
   }
 
   depends_on = [
