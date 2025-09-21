@@ -242,3 +242,39 @@
       device_id: 45ac941ff59d752fc3e82409bd6f5c56
       entity_id: da179915a7717f0c58b6072b8a15778d
       domain: switch
+- id: 01K5NWANZW5RDHJ34CNX3C6J7E
+  description: "Halloween lights on at sunset, 5am"
+  mode: single
+  triggers:
+    - trigger: sun
+      event: sunset
+      offset: 0
+    - trigger: time
+      at: "05:00:00"
+  conditions: []
+  actions:
+    - action: switch.turn_on
+      metadata: {}
+      data: {}
+      target:
+        device_id:
+          - 42d52e39eda6946dbf1b72ad2cccd4ad
+          - 62ae530718c8fab5da0b2edd929aee45
+- id: 01K5NWANZW4MGMZYDSD0AM9H73
+  description: "Halloween lights off at sunrise, 8pm"
+  mode: single
+  triggers:
+    - trigger: sun
+      event: sunrise
+      offset: 0
+    - trigger: time
+      at: "20:00:00"
+  conditions: []
+  actions:
+    - action: switch.turn_off
+      metadata: {}
+      data: {}
+      target:
+        device_id:
+          - 42d52e39eda6946dbf1b72ad2cccd4ad
+          - 62ae530718c8fab5da0b2edd929aee45
