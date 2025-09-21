@@ -243,6 +243,7 @@
       entity_id: da179915a7717f0c58b6072b8a15778d
       domain: switch
 - id: 01K5NWANZW5RDHJ34CNX3C6J7E
+  alias: "Halloween lights on at sunset, 5am"
   description: "Halloween lights on at sunset, 5am"
   mode: single
   triggers:
@@ -261,6 +262,7 @@
           - 42d52e39eda6946dbf1b72ad2cccd4ad
           - 62ae530718c8fab5da0b2edd929aee45
 - id: 01K5NWANZW4MGMZYDSD0AM9H73
+  alias: "Halloween lights off at sunrise, 8pm"
   description: "Halloween lights off at sunrise, 8pm"
   mode: single
   triggers:
