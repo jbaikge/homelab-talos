@@ -249,7 +249,7 @@
   triggers:
     - trigger: sun
       event: sunset
-      offset: 0
+      offset: "-1:00:00"
     - trigger: time
       at: "05:00:00"
   conditions: []
