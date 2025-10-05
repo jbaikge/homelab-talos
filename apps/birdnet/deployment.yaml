@@ -29,6 +29,8 @@ spec:
       containers:
         - name: birdnet
           image: "ghcr.io/tphakala/birdnet-go:nightly-20250904"
+          securityContext:
+            privileged: true
           env:
             - name: TZ
               value: "${TIMEZONE}"
