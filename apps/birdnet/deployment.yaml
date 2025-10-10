@@ -33,7 +33,7 @@ spec:
           command:
             - "sh"
             - "-c"
-            - "DEV=`df --output=source /data | tail -n1` && umount /data && apt update && apt install --yes resize2fs && resize2fs $DEV"
+            - "DEV=`df --output=source /data | tail -n1` && umount /data && apt update && apt install --yes e2fsprogs && resize2fs $DEV"
           volumeMounts:
             - mountPath: /data
               name: birdnet-data
