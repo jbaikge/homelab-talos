@@ -20,17 +20,26 @@ spec:
         app: birdnet
     spec:
       initContainers:
-      - name: init-permissions
-        image: busybox
-        command: ["sh", "-c", "chown 1000:1000 /data && chmod 750 /data"]
-        volumeMounts:
-        - mountPath: /data
-          name: birdnet-data
+        - name: init-permissions
+          image: busybox
+          command: ["sh", "-c", "chown 1000:1000 /data && chmod 750 /data"]
+          volumeMounts:
+            - mountPath: /data
+              name: birdnet-data
+        - name: init-resize2fs
+          image: debian
+          securityContext:
+            privileged: true
+          command:
+            - "sh"
+            - "-c"
+            - "DEV=`df --output=source /data | tail -n1` && umount /data && resize2fs $DEV"
+          volumeMounts:
+            - mountPath: /data
+              name: birdnet-data
       containers:
         - name: birdnet
           image: "ghcr.io/tphakala/birdnet-go:nightly-20250904"
-          securityContext:
-            privileged: true
           env:
             - name: TZ
               value: "${TIMEZONE}"
