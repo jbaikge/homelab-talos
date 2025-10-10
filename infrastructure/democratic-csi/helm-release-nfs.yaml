@@ -71,3 +71,8 @@ spec:
 
     volumeSnapshotClasses:
       - name: truenas-nfs
+
+    controller:
+      driver:
+        image:
+          tag: next
