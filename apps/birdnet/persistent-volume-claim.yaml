@@ -5,9 +5,9 @@ metadata:
   name: birdnet-data
   namespace: birdnet
   annotations:
-    volume.beta.kubernetes.io/storage-class: truenas-iscsi
+    volume.beta.kubernetes.io/storage-class: truenas-nfs
 spec:
-  storageClassName: truenas-iscsi
+  storageClassName: truenas-nfs
   accessModes:
     - ReadWriteOnce
   resources:

@@ -26,17 +26,6 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: birdnet-data
-        - name: init-resize2fs
-          image: debian
-          securityContext:
-            privileged: true
-          command:
-            - "sh"
-            - "-c"
-            - "DEV=`df --output=source /data | tail -n1` && umount /data && apt update && apt install --yes e2fsprogs && resize2fs $DEV"
-          volumeMounts:
-            - mountPath: /data
-              name: birdnet-data
       containers:
         - name: birdnet
           image: "ghcr.io/tphakala/birdnet-go:nightly-20250904"
