@@ -12,5 +12,5 @@ resources:
   - zwave-js-ui
   - linkding
   - wakapi
-  # - birdnet
+  - birdnet
   - freshrss
