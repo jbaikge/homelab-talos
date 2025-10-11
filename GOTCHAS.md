@@ -8,6 +8,10 @@ You can store an SSH key in a config secret all you want, but referencing it in 
 
 Switch to a password for success.
 
+## TrueNAS + democratic-csi
+
+In the helm values, make sure to set the controller version to use the "next" tag
+
 ## USB Z-Wave
 
 Only seems to work on the USB3 ports, not the USB2 ports
