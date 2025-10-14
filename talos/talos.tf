@@ -55,6 +55,9 @@ data "talos_machine_configuration" "controlplane" {
       ip            = each.value.ip
       netmask       = var.netmask
       gateway       = var.gateway
+      interface2    = each.value.interface2
+      ip2           = each.value.ip2
+      gateway2      = var.gateway2
       installer_url = data.talos_image_factory_urls.this.urls.installer
     }),
     templatefile("${path.module}/files/nut.yaml", {
@@ -81,6 +84,9 @@ data "talos_machine_configuration" "worker" {
       ip            = each.value.ip
       netmask       = var.netmask
       gateway       = var.gateway
+      interface2    = each.value.interface2
+      ip2           = each.value.ip2
+      gateway2      = var.gateway2
       installer_url = data.talos_image_factory_urls.this.urls.installer
     }),
     templatefile("${path.module}/files/nut.yaml", {

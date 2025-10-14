@@ -55,6 +55,11 @@ variable "gateway" {
   type        = string
 }
 
+variable "gateway2" {
+  description = "Network gateway for nodes (second interface)"
+  type        = string
+}
+
 variable "netmask" {
   description = "Netmask after slash (ex: 24)"
   type        = number
@@ -66,6 +71,8 @@ variable "controlplanes" {
     ip           = string
     interface    = string
     install_disk = string
+    ip2          = string
+    interface2   = string
   }))
 }
 
@@ -75,6 +82,8 @@ variable "workers" {
     ip           = string
     interface    = string
     install_disk = string
+    ip2          = string
+    interface2   = string
   }))
 }
 

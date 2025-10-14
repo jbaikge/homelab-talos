@@ -11,3 +11,10 @@ machine:
         routes:
           - network: 0.0.0.0/0
             gateway: ${gateway}
+      - interface: ${interface2}
+        addresses:
+          - ${ip2}/${netmask}
+        # Don't set this address with a default route or it will take over
+        # routes:
+        #   - network: 0.0.0.0/0
+        #     gateway: ${gateway2}
